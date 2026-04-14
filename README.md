@@ -41,7 +41,7 @@ Siga os passos abaixo para preparar o ambiente na sua máquina:
 
 ## Como Rodar o Projeto
 
-Com o ambiente ativado e as dependências devidamente instaladas, você tem duas rotas principais para analisar os códigos do projeto:
+Com o ambiente ativado e as dependências devidamente instaladas, você tem uma rota para analisar os códigos do projeto:
 
 ### 1. Via Marimo (Recomendado para análises interativas)
 O projeto conta com o notebook `main.py` para análises exploratórias. Para abri-lo:
@@ -49,3 +49,4 @@ O projeto conta com o notebook `main.py` para análises exploratórias. Para abr
 marimo edit
 ```
 Isso irá iniciar o servidor Marimo e abrir a interface diretamente em seu navegador padrão. Basta abrir o arquivo `main.py` para visualizar e executar as células.
+
