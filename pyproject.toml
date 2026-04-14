@@ -1,0 +1,16 @@
+[project]
+name = "avaliacao-desempenho-libs"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "duckdb>=1.5.2",
+    "jupyter>=1.1.1",
+    "memory-profiler>=0.61.0",
+    "pandas>=3.0.2",
+    "polars>=1.39.3",
+    "psutil>=7.2.2",
+    "pytest-benchmark>=5.2.3",
+    "spark>=0.2.1",
+]
