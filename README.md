@@ -19,7 +19,7 @@ Siga os passos abaixo para preparar o ambiente na sua máquina:
 
 1. **Clone do repositório (caso ainda não tenha feito):**
    ```bash
-   git clone <URL-do-seu-repositorio>
+   git clone https://github.com/Maikoandre/avaliacao_desempenho_libs
    cd avaliacao_desempenho_libs
    ```
 
