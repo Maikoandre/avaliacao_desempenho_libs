@@ -43,9 +43,9 @@ Siga os passos abaixo para preparar o ambiente na sua máquina:
 
 Com o ambiente ativado e as dependências devidamente instaladas, você tem duas rotas principais para analisar os códigos do projeto:
 
-### 1. Via Jupyter Notebook (Recomendado para análises interativas)
-O projeto conta com o notebook `main.ipynb` para análises exploratórias. Para abri-lo:
+### 1. Via Marimo (Recomendado para análises interativas)
+O projeto conta com o notebook `main.py` para análises exploratórias. Para abri-lo:
 ```bash
-jupyter notebook
+marimo edit
 ```
-Isso irá iniciar o servidor Jupyter e abrir a interface diretamente em seu navegador padrão. Basta abrir o arquivo `main.ipynb` para visualizar e executar as células.
+Isso irá iniciar o servidor Marimo e abrir a interface diretamente em seu navegador padrão. Basta abrir o arquivo `main.py` para visualizar e executar as células.
