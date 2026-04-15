@@ -13,6 +13,26 @@ Para rodar o projeto, é recomendado instalar o gerenciador de pacotes e ambient
 - Para Windows ou outros métodos de instalação, consulte a [documentação oficial do uv](https://docs.astral.sh/uv/getting-started/installation/).
 - É necessário ter a versão **Python 3.11** ou superior instalada em seu sistema.
 
+### Instalando o Java 17 (Requisito para o PySpark)
+
+Para rodar o **PySpark** localmente, é obrigatório ter o Java instalado (o **Java 17** é a versão mais recomendada para compatibilidade e performance).
+
+- **No Linux (Ubuntu/Debian):**
+  ```bash
+  sudo apt update
+  sudo apt install openjdk-17-jdk -y
+  ```
+
+
+- **No Windows:**
+  Baixe o instalador do Java 17 através do site de distribuições como o [Adoptium (Eclipse Temurin)](https://adoptium.net/temurin/releases/?version=17) ou do [site oficial da Oracle](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html).
+  
+  
+  (Lembre-se de configurar as variáveis de ambiente `JAVA_HOME` e adicionar o Java ao `PATH` do sistema, frequentemente isso já é feito automaticamente pelo instalador).
+
+Após a instalação, verifique se ocorreu tudo bem executando `java -version` no seu terminal.
+
+
 ## Instalação e Configuração
 
 Siga os passos abaixo para preparar o ambiente na sua máquina:
