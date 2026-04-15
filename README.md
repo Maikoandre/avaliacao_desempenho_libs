@@ -27,7 +27,7 @@ Para rodar o **PySpark** localmente, é obrigatório ter o Java instalado (o **J
 - **No Windows:**
   Baixe o instalador do Java 17 através do site de distribuições como o [Adoptium (Eclipse Temurin)](https://adoptium.net/temurin/releases/?version=17) ou do [site oficial da Oracle](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html).
   
-  
+
   (Lembre-se de configurar as variáveis de ambiente `JAVA_HOME` e adicionar o Java ao `PATH` do sistema, frequentemente isso já é feito automaticamente pelo instalador).
 
 Após a instalação, verifique se ocorreu tudo bem executando `java -version` no seu terminal.

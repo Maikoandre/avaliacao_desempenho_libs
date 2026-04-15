@@ -58,7 +58,6 @@ def _(duckdb):
 @app.cell
 def _(statistics, time):
     def benchmark(func, n=10, warmup=2):
-        # warm-up (importante pra coisas tipo DuckDB / Spark)
         for _ in range(warmup):
             func()
 
@@ -94,11 +93,39 @@ def _(benchmark, duckdb):
 @app.cell
 def _(benchmark, pd, read_duckdb):
     def read_pandas():
-        return pd.read_parquet("data/sinan_dengue_sample_2024.parquet").head(5)
+        return pd.read_parquet("data/sinan_dengue_sample_2024.parquet")
 
     benchmark(read_duckdb)
     print('\n')
     benchmark(read_pandas)
+    return
+
+
+@app.cell
+def _(pl):
+    def read_polars():
+        return pl.scan_parquet('data/sinan_dengue_sample_2024.parquet')
+
+    return (read_polars,)
+
+
+@app.cell
+def _(benchmark, read_polars):
+    benchmark(read_polars)
+    return
+
+
+@app.cell
+def _(session):
+    def read_spark():
+        return session.read.parquet('data/sinan_dengue_sample_2024.parquet')
+
+    return (read_spark,)
+
+
+@app.cell
+def _(benchmark, read_spark):
+    benchmark(read_spark)
     return
 
 
