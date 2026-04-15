@@ -1,6 +1,6 @@
 # Avaliação de Desempenho de Bibliotecas
 
-Este projeto tem como objetivo realizar a avaliação e comparação de desempenho de diferentes bibliotecas de processamento e manipulação de dados em Python, como **Pandas**, **Polars**, **DuckDB** e **Spark**. Ele também utiliza ferramentas de profiling, como `memory-profiler`, `psutil` e `pytest-benchmark`.
+Este projeto tem como objetivo realizar a avaliação e comparação de desempenho de diferentes bibliotecas de processamento e manipulação de dados em Python, como **Pandas**, **Polars**, **DuckDB** e **PySpark**. Ele também utiliza ferramentas de profiling, como `memory-profiler`, `psutil` e `pytest-benchmark`.
 
 ## Pré-requisitos
 

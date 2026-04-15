@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "dbfread>=2.0.7",
     "duckdb>=1.5.2",
     "jupyter>=1.1.1",
     "marimo>=0.23.1",
@@ -12,6 +13,8 @@ dependencies = [
     "pandas>=3.0.2",
     "polars>=1.39.3",
     "psutil>=7.2.2",
+    "pyarrow>=23.0.1",
+    "pyspark>=4.1.1",
     "pytest-benchmark>=5.2.3",
-    "spark>=0.2.1",
+    "sqlglot>=30.4.3",
 ]
