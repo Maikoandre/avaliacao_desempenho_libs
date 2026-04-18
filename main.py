@@ -25,7 +25,7 @@ def _(pd):
 
 @app.cell
 def _(pl):
-    polars = pl.scan_parquet('data/sinan_dengue_sample_2024.parquet')
+    polars = pl.read_parquet('data/sinan_dengue_sample_2024.parquet')
     polars.head(5)
     return
 
@@ -58,21 +58,31 @@ def _(duckdb):
 @app.cell
 def _(statistics, time):
     def benchmark(func, n=10, warmup=2):
+        # Warmup
         for _ in range(warmup):
             func()
 
         times = []
-        for _ in range(n):
+        # Cabeçalho da Tabela
+        print(f"{'Run':>5} | {'Duração (s)':>15}")
+        print("-" * 23)
+
+        for i in range(1, n + 1):
             start = time.perf_counter()
             func()
             end = time.perf_counter()
-            times.append(end - start)
 
-        print(f"runs: {n}")
-        print(f"mean: {statistics.mean(times):.6f}s")
-        print(f"min:  {min(times):.6f}s")
-        print(f"max:  {max(times):.6f}s")
-        print(f"std:  {statistics.stdev(times):.6f}s")
+            duration = end - start
+            times.append(duration)
+            # Linha da Tabela
+            print(f"{i:>5} | {duration:>15.6f}")
+
+        # Estatísticas Finais
+        print("-" * 23)
+        print(f"Média:  {statistics.mean(times):.6f}s")
+        print(f"Mín:    {min(times):.6f}s")
+        print(f"Máx:    {max(times):.6f}s")
+        print(f"Desvio: {statistics.stdev(times):.6f}s")
 
     return (benchmark,)
 
