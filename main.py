@@ -57,7 +57,7 @@ def _(duckdb):
 
 @app.cell
 def _(statistics, time):
-    def benchmark(func, n=10, warmup=2):
+    def benchmark(func, n=48, warmup=2):
         # Warmup
         for _ in range(warmup):
             func()
