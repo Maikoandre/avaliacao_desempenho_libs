@@ -1,0 +1,10 @@
+services:
+  avaliacao-libs:
+    build: .
+    ports:
+      - "2718:2718"
+    volumes:
+      - .:/app
+      - /app/.venv
+    environment:
+      - PYTHONUNBUFFERED=1

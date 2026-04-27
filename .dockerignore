@@ -1,7 +1,8 @@
+.git
 .venv
 __pycache__
+*.pyc
 .ipynb_checkpoints
+.python-version
 data/
-__marimo__
 
-skills/

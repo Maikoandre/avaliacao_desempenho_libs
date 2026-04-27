@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.23.1"
+__generated_with = "0.23.3"
 app = marimo.App(width="medium")
 
 
@@ -20,7 +20,7 @@ def _():
 def _(pd):
     data = pd.read_parquet('data/sinan_dengue_sample_2024.parquet')
     data.head(5)
-    return
+    return (data,)
 
 
 @app.cell
@@ -136,6 +136,12 @@ def _(session):
 @app.cell
 def _(benchmark, read_spark):
     benchmark(read_spark)
+    return
+
+
+@app.cell
+def _(data):
+    data.shape
     return
 
 
