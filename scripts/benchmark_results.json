@@ -1,0 +1,191 @@
+[
+    {
+        "library": "duckdb",
+        "dataset_size": "500MB",
+        "operation": "filter",
+        "time_s": 6.433701352999833,
+        "mem_mb": 555.1328125,
+        "cpu_user_s": 17.86,
+        "cpu_sys_s": 1.68
+    },
+    {
+        "library": "duckdb",
+        "dataset_size": "500MB",
+        "operation": "aggr",
+        "time_s": 0.18391831700000694,
+        "mem_mb": 223.0234375,
+        "cpu_user_s": 0.31000000000000005,
+        "cpu_sys_s": 0.05
+    },
+    {
+        "library": "polars",
+        "dataset_size": "500MB",
+        "operation": "filter",
+        "time_s": 3.668106335000175,
+        "mem_mb": 277.65234375,
+        "cpu_user_s": 6.7299999999999995,
+        "cpu_sys_s": 0.49000000000000005
+    },
+    {
+        "library": "polars",
+        "dataset_size": "500MB",
+        "operation": "aggr",
+        "time_s": 0.5660014630000205,
+        "mem_mb": 279.48046875,
+        "cpu_user_s": 1.0,
+        "cpu_sys_s": 0.06000000000000001
+    },
+    {
+        "library": "polars",
+        "dataset_size": "500MB",
+        "operation": "join",
+        "time_s": 10.727273124000021,
+        "mem_mb": 1355.68359375,
+        "cpu_user_s": 19.810000000000002,
+        "cpu_sys_s": 1.3699999999999999
+    },
+    {
+        "library": "pyspark",
+        "dataset_size": "500MB",
+        "operation": "filter",
+        "time_s": 42.48609213899999,
+        "mem_mb": 65.59765625,
+        "cpu_user_s": 0.18000000000000016,
+        "cpu_sys_s": 0.07
+    },
+    {
+        "library": "pyspark",
+        "dataset_size": "500MB",
+        "operation": "aggr",
+        "time_s": 5.393334675999995,
+        "mem_mb": 191.06640625,
+        "cpu_user_s": 0.010000000000000009,
+        "cpu_sys_s": 0.0
+    },
+    {
+        "library": "duckdb",
+        "dataset_size": "1GB",
+        "operation": "filter",
+        "time_s": 13.002416967000045,
+        "mem_mb": 774.0234375,
+        "cpu_user_s": 37.56,
+        "cpu_sys_s": 3.02
+    },
+    {
+        "library": "duckdb",
+        "dataset_size": "1GB",
+        "operation": "aggr",
+        "time_s": 0.3486485100002028,
+        "mem_mb": 246.8828125,
+        "cpu_user_s": 0.6499999999999999,
+        "cpu_sys_s": 0.07999999999999999
+    },
+    {
+        "library": "polars",
+        "dataset_size": "1GB",
+        "operation": "filter",
+        "time_s": 6.939212900999792,
+        "mem_mb": 336.578125,
+        "cpu_user_s": 13.13,
+        "cpu_sys_s": 0.94
+    },
+    {
+        "library": "polars",
+        "dataset_size": "1GB",
+        "operation": "aggr",
+        "time_s": 1.0604346310001347,
+        "mem_mb": 309.80078125,
+        "cpu_user_s": 1.8900000000000001,
+        "cpu_sys_s": 0.1
+    },
+    {
+        "library": "polars",
+        "dataset_size": "1GB",
+        "operation": "join",
+        "time_s": 21.357367218000036,
+        "mem_mb": 1378.734375,
+        "cpu_user_s": 39.040000000000006,
+        "cpu_sys_s": 3.09
+    },
+    {
+        "library": "pyspark",
+        "dataset_size": "1GB",
+        "operation": "filter",
+        "time_s": 77.90080758600016,
+        "mem_mb": 129.546875,
+        "cpu_user_s": 0.18000000000000016,
+        "cpu_sys_s": 0.03999999999999998
+    },
+    {
+        "library": "pyspark",
+        "dataset_size": "1GB",
+        "operation": "aggr",
+        "time_s": 7.144954253999913,
+        "mem_mb": 192.2578125,
+        "cpu_user_s": 0.010000000000000009,
+        "cpu_sys_s": 0.0
+    },
+    {
+        "library": "duckdb",
+        "dataset_size": "2GB",
+        "operation": "filter",
+        "time_s": 26.496179527000095,
+        "mem_mb": 1153.88671875,
+        "cpu_user_s": 76.66000000000001,
+        "cpu_sys_s": 6.01
+    },
+    {
+        "library": "duckdb",
+        "dataset_size": "2GB",
+        "operation": "aggr",
+        "time_s": 0.672554011000102,
+        "mem_mb": 295.59765625,
+        "cpu_user_s": 1.1600000000000001,
+        "cpu_sys_s": 0.21000000000000002
+    },
+    {
+        "library": "polars",
+        "dataset_size": "2GB",
+        "operation": "filter",
+        "time_s": 11.607675492999988,
+        "mem_mb": 404.09375,
+        "cpu_user_s": 22.18,
+        "cpu_sys_s": 1.33
+    },
+    {
+        "library": "polars",
+        "dataset_size": "2GB",
+        "operation": "aggr",
+        "time_s": 1.4910968019999018,
+        "mem_mb": 379.140625,
+        "cpu_user_s": 2.73,
+        "cpu_sys_s": 0.18
+    },
+    {
+        "library": "polars",
+        "dataset_size": "2GB",
+        "operation": "join",
+        "time_s": 30.691370152999752,
+        "mem_mb": 1711.87109375,
+        "cpu_user_s": 58.03,
+        "cpu_sys_s": 3.3
+    },
+    {
+        "library": "pyspark",
+        "dataset_size": "2GB",
+        "operation": "filter",
+        "time_s": 137.66222557200035,
+        "mem_mb": 47.96875,
+        "cpu_user_s": 0.26,
+        "cpu_sys_s": 0.06999999999999998
+    },
+    {
+        "library": "pyspark",
+        "dataset_size": "2GB",
+        "operation": "aggr",
+        "time_s": 12.14399246899984,
+        "mem_mb": 183.19140625,
+        "cpu_user_s": 0.010000000000000009,
+        "cpu_sys_s": 0.0
+    }
+]
