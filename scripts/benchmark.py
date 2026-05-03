@@ -12,7 +12,7 @@ import subprocess
 
 # --- ADAPTIVE CONFIGURATION ---
 TOTAL_RAM_GB = psutil.virtual_memory().total / (1024**3)
-IS_POWERFUL_PC = TOTAL_RAM_GB >= 8.0
+IS_POWERFUL_PC = TOTAL_RAM_GB >= 7.0
 
 # --- SUBPROCESS RUNNER LOGIC ---
 
