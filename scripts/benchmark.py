@@ -9,94 +9,147 @@ import json
 import gc
 import sys
 import subprocess
+import argparse
 
 # --- ADAPTIVE CONFIGURATION ---
 TOTAL_RAM_GB = psutil.virtual_memory().total / (1024**3)
 IS_POWERFUL_PC = TOTAL_RAM_GB >= 8.0
 
+# --- COLUMNS AND DTYPES ---
+USE_COLS = ["ID_MUNICIP", "CS_SEXO", "NU_IDADE_N", "DT_NOTIFIC"]
+PANDAS_DTYPES = {
+    "ID_MUNICIP": "int32",
+    "CS_SEXO": "category",
+    "NU_IDADE_N": "float32",  # float because of potential NAs
+    "DT_NOTIFIC": "category"
+}
+
 # --- SUBPROCESS RUNNER LOGIC ---
 
-def track_metrics_internal(lib, size, op, iteration, func):
+def track_metrics_internal(lib, size, op, iteration, func, is_warmup=False):
+    if is_warmup:
+        try:
+            func()
+        except:
+            pass
+        return
+
     gc.collect()
     process = psutil.Process()
+    
+    # Snapshots
     t_start = time.perf_counter()
     cpu_start = process.cpu_times()
+    disk_start = psutil.disk_io_counters()
     
     try:
         func()
+    except MemoryError:
+        print("STATUS:FAILED_OOM")
+        sys.exit(0) # Exit cleanly so parent reads status
     except Exception as e:
-        print(f"FAILED: {str(e)}")
+        print(f"STATUS:FAILED_ERROR:{str(e)}")
         sys.exit(1)
 
+    # End snapshots
     t_end = time.perf_counter()
     cpu_end = process.cpu_times()
+    disk_end = psutil.disk_io_counters()
+    
     mem_peak = process.memory_info().rss / (1024 * 1024)
     
     result = {
-        "library": lib, "dataset_size": size, "operation": op, "iteration": int(iteration),
-        "time_s": t_end - t_start, "mem_mb": mem_peak,
-        "cpu_user_s": cpu_end.user - cpu_start.user, "cpu_sys_s": cpu_end.system - cpu_start.system
+        "library": lib, 
+        "dataset_size": size, 
+        "operation": op, 
+        "iteration": int(iteration),
+        "status": "SUCCESS",
+        "time_s": t_end - t_start, 
+        "mem_mb": mem_peak,
+        "cpu_user_s": cpu_end.user - cpu_start.user, 
+        "cpu_sys_s": cpu_end.system - cpu_start.system,
+        "disk_read_mb": (disk_end.read_bytes - disk_start.read_bytes) / (1024 * 1024),
+        "disk_write_mb": (disk_end.write_bytes - disk_start.write_bytes) / (1024 * 1024)
     }
     print(f"RESULT_JSON:{json.dumps(result)}")
     sys.exit(0)
 
-def internal_run(lib, size, op, file_path, iteration):
+def internal_run(lib, size, op, file_path, iteration, is_warmup=False):
     lookup_data = {"CS_SEXO": ["1", "2", "9"], "SEXO_DESC": ["M", "F", "I"]}
     lk_pd = pd.DataFrame(lookup_data)
     lk_pl = pl.DataFrame(lookup_data)
 
-    if lib == "pandas":
-        # CSV reader for Pandas
-        df = pd.read_csv(file_path, na_values=["NA"], low_memory=False)
-        if op == "filter": track_metrics_internal(lib, size, op, iteration, lambda: df[df["ID_MUNICIP"] == 355030])
-        if op == "aggr": track_metrics_internal(lib, size, op, iteration, lambda: df.groupby("CS_SEXO")["NU_IDADE_N"].sum())
-        if op == "join": track_metrics_internal(lib, size, op, iteration, lambda: df.merge(lk_pd, on="CS_SEXO"))
-        if op == "sort": track_metrics_internal(lib, size, op, iteration, lambda: df.sort_values("DT_NOTIFIC"))
-    
-    if lib == "polars":
-        if not IS_POWERFUL_PC:
-            os.environ["POLARS_MAX_THREADS"] = "1"
-            q = pl.scan_csv(file_path, null_values=["NA"], infer_schema_length=10000)
-            if op == "filter": track_metrics_internal(lib, size, op, iteration, lambda: q.filter(pl.col("ID_MUNICIP") == 355030).collect(engine='streaming'))
-            if op == "aggr": track_metrics_internal(lib, size, op, iteration, lambda: q.group_by("CS_SEXO").agg(pl.col("NU_IDADE_N").sum()).collect(engine='streaming'))
-            if op == "join": track_metrics_internal(lib, size, op, iteration, lambda: q.join(lk_pl.lazy(), on="CS_SEXO").collect(engine='streaming'))
-            if op == "sort": 
-                if os.path.getsize(file_path) / (1024**3) > 0.4:
-                    print("Skipping Polars Sort on Low RAM")
-                    sys.exit(0)
-                track_metrics_internal(lib, size, op, iteration, lambda: q.sort("DT_NOTIFIC").collect(engine='streaming'))
-        else:
-            df = pl.read_csv(file_path, null_values=["NA"], infer_schema_length=10000)
-            if op == "filter": track_metrics_internal(lib, size, op, iteration, lambda: df.filter(pl.col("ID_MUNICIP") == 355030))
-            if op == "aggr": track_metrics_internal(lib, size, op, iteration, lambda: df.group_by("CS_SEXO").agg(pl.col("NU_IDADE_N").sum()))
-            if op == "join": track_metrics_internal(lib, size, op, iteration, lambda: df.join(lk_pl, on="CS_SEXO"))
-            if op == "sort": track_metrics_internal(lib, size, op, iteration, lambda: df.sort("DT_NOTIFIC"))
+    try:
+        if lib == "pandas":
+            # Optimized reading with dtypes and usecols
+            df = pd.read_csv(file_path, usecols=USE_COLS, dtype=PANDAS_DTYPES, na_values=["NA"], low_memory=False)
+            if op == "filter": track_metrics_internal(lib, size, op, iteration, lambda: df[df["ID_MUNICIP"] == 355030], is_warmup)
+            if op == "aggr": track_metrics_internal(lib, size, op, iteration, lambda: df.groupby("CS_SEXO", observed=True)["NU_IDADE_N"].sum(), is_warmup)
+            if op == "join": track_metrics_internal(lib, size, op, iteration, lambda: df.merge(lk_pd, on="CS_SEXO"), is_warmup)
+            if op == "sort": track_metrics_internal(lib, size, op, iteration, lambda: df.sort_values("DT_NOTIFIC"), is_warmup)
+        
+        if lib == "polars":
+            if not IS_POWERFUL_PC:
+                os.environ["POLARS_MAX_THREADS"] = "1"
+                q = pl.scan_csv(file_path, null_values=["NA"], infer_schema_length=10000).select(USE_COLS)
+                if op == "filter": track_metrics_internal(lib, size, op, iteration, lambda: q.filter(pl.col("ID_MUNICIP") == 355030).collect(engine='streaming'), is_warmup)
+                if op == "aggr": track_metrics_internal(lib, size, op, iteration, lambda: q.group_by("CS_SEXO").agg(pl.col("NU_IDADE_N").sum()).collect(engine='streaming'), is_warmup)
+                if op == "join": track_metrics_internal(lib, size, op, iteration, lambda: q.join(lk_pl.lazy(), on="CS_SEXO").collect(engine='streaming'), is_warmup)
+                if op == "sort": 
+                    if os.path.getsize(file_path) / (1024**3) > 0.4:
+                        if not is_warmup: print("STATUS:SKIPPED_LOW_RAM")
+                        sys.exit(0)
+                    track_metrics_internal(lib, size, op, iteration, lambda: q.sort("DT_NOTIFIC").collect(engine='streaming'), is_warmup)
+            else:
+                df = pl.read_csv(file_path, columns=USE_COLS, null_values=["NA"], infer_schema_length=10000)
+                if op == "filter": track_metrics_internal(lib, size, op, iteration, lambda: df.filter(pl.col("ID_MUNICIP") == 355030), is_warmup)
+                if op == "aggr": track_metrics_internal(lib, size, op, iteration, lambda: df.group_by("CS_SEXO").agg(pl.col("NU_IDADE_N").sum()), is_warmup)
+                if op == "join": track_metrics_internal(lib, size, op, iteration, lambda: df.join(lk_pl, on="CS_SEXO"), is_warmup)
+                if op == "sort": track_metrics_internal(lib, size, op, iteration, lambda: df.sort("DT_NOTIFIC"), is_warmup)
 
-    if lib == "duckdb":
-        # CSV reader for DuckDB
-        csv_query = f"read_csv_auto('{file_path}', nullstr='NA')"
-        if op == "filter": track_metrics_internal(lib, size, op, iteration, lambda: duckdb.sql(f"SELECT * FROM {csv_query} WHERE ID_MUNICIP = 355030").df())
-        if op == "aggr": track_metrics_internal(lib, size, op, iteration, lambda: duckdb.sql(f"SELECT CS_SEXO, SUM(NU_IDADE_N) FROM {csv_query} GROUP BY CS_SEXO").df())
-        if op == "join": track_metrics_internal(lib, size, op, iteration, lambda: duckdb.sql(f"SELECT * FROM {csv_query} AS t JOIN lk_pd ON t.CS_SEXO = lk_pd.CS_SEXO").df())
-        if op == "sort": track_metrics_internal(lib, size, op, iteration, lambda: duckdb.sql(f"SELECT * FROM {csv_query} ORDER BY DT_NOTIFIC").df())
+        if lib == "duckdb":
+            # Optimized reading with SELECT
+            cols_str = ", ".join(USE_COLS)
+            csv_query = f"SELECT {cols_str} FROM read_csv_auto('{file_path}', nullstr='NA')"
+            if op == "filter": track_metrics_internal(lib, size, op, iteration, lambda: duckdb.sql(f"SELECT * FROM ({csv_query}) WHERE ID_MUNICIP = 355030").df(), is_warmup)
+            if op == "aggr": track_metrics_internal(lib, size, op, iteration, lambda: duckdb.sql(f"SELECT CS_SEXO, SUM(NU_IDADE_N) FROM ({csv_query}) GROUP BY CS_SEXO").df(), is_warmup)
+            if op == "join": track_metrics_internal(lib, size, op, iteration, lambda: duckdb.sql(f"SELECT * FROM ({csv_query}) AS t JOIN lk_pd ON t.CS_SEXO = lk_pd.CS_SEXO").df(), is_warmup)
+            if op == "sort": track_metrics_internal(lib, size, op, iteration, lambda: duckdb.sql(f"SELECT * FROM ({csv_query}) ORDER BY DT_NOTIFIC").df(), is_warmup)
 
-    if lib == "pyspark":
-        spark_mem = "8g" if IS_POWERFUL_PC else "1g"
-        spark = SparkSession.builder.appName("Bench").config("spark.driver.memory", spark_mem).getOrCreate()
-        # CSV reader for PySpark
-        df = spark.read.csv(file_path, header=True, inferSchema=True, nullValue='NA')
-        lk_sp = spark.createDataFrame(lk_pd)
-        if op == "filter": track_metrics_internal(lib, size, op, iteration, lambda: df.filter(df.ID_MUNICIP == 355030).collect())
-        if op == "aggr": track_metrics_internal(lib, size, op, iteration, lambda: df.groupBy("CS_SEXO").sum("NU_IDADE_N").collect())
-        if op == "join": track_metrics_internal(lib, size, op, iteration, lambda: df.join(lk_sp, "CS_SEXO").collect())
-        if op == "sort": track_metrics_internal(lib, size, op, iteration, lambda: df.sort("DT_NOTIFIC").collect())
-        spark.stop()
+        if lib == "pyspark":
+            spark_mem = "8g" if IS_POWERFUL_PC else "1g"
+            spark = SparkSession.builder.appName("Bench").config("spark.driver.memory", spark_mem).getOrCreate()
+            # Optimized reading with select
+            df = spark.read.csv(file_path, header=True, inferSchema=True, nullValue='NA').select(USE_COLS)
+            lk_sp = spark.createDataFrame(lk_pd)
+            if op == "filter": track_metrics_internal(lib, size, op, iteration, lambda: df.filter(df.ID_MUNICIP == 355030).collect(), is_warmup)
+            if op == "aggr": track_metrics_internal(lib, size, op, iteration, lambda: df.groupBy("CS_SEXO").sum("NU_IDADE_N").collect(), is_warmup)
+            if op == "join": track_metrics_internal(lib, size, op, iteration, lambda: df.join(lk_sp, "CS_SEXO").collect(), is_warmup)
+            if op == "sort": track_metrics_internal(lib, size, op, iteration, lambda: df.sort("DT_NOTIFIC").collect(), is_warmup)
+            spark.stop()
+    except MemoryError:
+        if not is_warmup: print("STATUS:FAILED_OOM")
+        sys.exit(0)
+    except Exception as e:
+        if not is_warmup: print(f"STATUS:FAILED_ERROR:{str(e)}")
+        sys.exit(1)
 
 # --- MAIN RUNNER ---
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1] == "--internal-run":
-        internal_run(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6])
+    parser = argparse.ArgumentParser(description="Benchmark Data Processing Libraries")
+    parser.add_argument("--internal-run", action="store_true", help="Run internally for a specific config")
+    parser.add_argument("--lib", type=str, help="Library to test")
+    parser.add_argument("--size", type=str, help="Dataset size label")
+    parser.add_argument("--op", type=str, help="Operation to test")
+    parser.add_argument("--path", type=str, help="Path to dataset")
+    parser.add_argument("--iteration", type=int, help="Iteration number")
+    parser.add_argument("--warmup", action="store_true", help="Run as warmup")
+    
+    args = parser.parse_args()
+
+    if args.internal_run:
+        internal_run(args.lib, args.size, args.op, args.path, args.iteration, args.warmup)
         sys.exit(0)
 
     print(f"System Check: {TOTAL_RAM_GB:.1f}GB RAM detected.")
@@ -106,7 +159,6 @@ if __name__ == "__main__":
     SCRIPT_DIR = os.path.dirname(SCRIPT_PATH)
     PROJECT_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, ".."))
     
-    # Updated to use the generated CSV files
     datasets = {
         "500MB": os.path.join(PROJECT_ROOT, "data/dataset_500mb.csv"),
         "1GB": os.path.join(PROJECT_ROOT, "data/dataset_1gb.csv"),
@@ -115,7 +167,7 @@ if __name__ == "__main__":
     
     libs = ["pandas", "polars", "duckdb", "pyspark"]
     ops = ["filter", "aggr", "join", "sort"]
-    NUM_ITERATIONS = 48
+    NUM_ITERATIONS = 1
     results = []
 
     for label, path in datasets.items():
@@ -123,31 +175,60 @@ if __name__ == "__main__":
             print(f"Dataset {label} not found at {path}. Skipping.")
             continue
         print(f"\n>>> Dataset: {label}")
-        file_size_gb = os.path.getsize(path) / (1024**3)
 
         for lib in libs:
             print(f"  Testing {lib}...")
             for op in ops:
                 print(f"    Testing {op}...")
+                
+                # --- WARMUP ---
+                print("      Warmup phase...", end=" ", flush=True)
+                cmd_warm = [sys.executable, SCRIPT_PATH, "--internal-run", "--lib", lib, "--size", label, "--op", op, "--path", path, "--iteration", "0", "--warmup"]
+                subprocess.run(cmd_warm, capture_output=True, text=True, timeout=900)
+                print("Done.")
+
+                # --- MEASUREMENT ---
                 for i in range(NUM_ITERATIONS):
                     try:
-                        cmd = [sys.executable, SCRIPT_PATH, "--internal-run", lib, label, op, path, str(i+1)]
+                        cmd = [sys.executable, SCRIPT_PATH, "--internal-run", "--lib", lib, "--size", label, "--op", op, "--path", path, "--iteration", str(i+1)]
                         proc = subprocess.run(cmd, capture_output=True, text=True, timeout=900)
                         
-                        if proc.returncode == 0:
-                            for line in proc.stdout.splitlines():
-                                if line.startswith("RESULT_JSON:"):
-                                    res = json.loads(line.replace("RESULT_JSON:", ""))
-                                    results.append(res)
-                                    if (i + 1) % 10 == 0 or (i + 1) == NUM_ITERATIONS:
-                                        print(f"      Iter {i+1}/{NUM_ITERATIONS}: {res['time_s']:.4f}s")
+                        found_result = False
+                        status = "SUCCESS"
+                        
+                        if proc.returncode != 0:
+                            status = "FAILED_CRASH"
+                        
+                        for line in proc.stdout.splitlines():
+                            if line.startswith("RESULT_JSON:"):
+                                res = json.loads(line.replace("RESULT_JSON:", ""))
+                                results.append(res)
+                                found_result = True
+                            elif line.startswith("STATUS:"):
+                                status = line.replace("STATUS:", "")
+
+                        if not found_result:
+                            # Handle OOM or other failures
+                            if "FAILED_OOM" in status or proc.returncode == 137:
+                                status = "FAILED_OOM"
+                            
+                            error_res = {
+                                "library": lib, "dataset_size": label, "operation": op, "iteration": i+1,
+                                "status": status, "time_s": None, "mem_mb": None
+                            }
+                            results.append(error_res)
+                            print(f"      Iter {i+1}/{NUM_ITERATIONS}: {status}")
                         else:
-                            print(f"      Iter {i+1}: FAILED (OOM/Crash)")
-                            # Print stderr if failed to help debug
-                            if proc.stderr:
-                                print(f"        Error: {proc.stderr.splitlines()[-1] if proc.stderr.splitlines() else 'Unknown'}")
+                            last_res = results[-1]
+                            if (i + 1) % 5 == 0 or (i + 1) == NUM_ITERATIONS:
+                                print(f"      Iter {i+1}/{NUM_ITERATIONS}: {last_res['time_s']:.4f}s | DiskR: {last_res['disk_read_mb']:.1f}MB")
+                                
                     except subprocess.TimeoutExpired:
                         print(f"      Iter {i+1}: TIMEOUT")
+                        results.append({
+                            "library": lib, "dataset_size": label, "operation": op, "iteration": i+1,
+                            "status": "TIMEOUT", "time_s": None, "mem_mb": None
+                        })
 
     with open("benchmark_results_csv.json", "w") as f:
         json.dump(results, f, indent=4)
