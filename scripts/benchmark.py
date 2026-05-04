@@ -96,9 +96,6 @@ def internal_run(lib, size, op, file_path, iteration, is_warmup=False):
                 if op == "aggr": track_metrics_internal(lib, size, op, iteration, lambda: q.group_by("CS_SEXO").agg(pl.col("NU_IDADE_N").sum()).collect(engine='streaming'), is_warmup)
                 if op == "join": track_metrics_internal(lib, size, op, iteration, lambda: q.join(lk_pl.lazy(), on="CS_SEXO").collect(engine='streaming'), is_warmup)
                 if op == "sort": 
-                    if os.path.getsize(file_path) / (1024**3) > 0.4:
-                        if not is_warmup: print("STATUS:SKIPPED_LOW_RAM")
-                        sys.exit(0)
                     track_metrics_internal(lib, size, op, iteration, lambda: q.sort("DT_NOTIFIC").collect(engine='streaming'), is_warmup)
             else:
                 df = pl.read_csv(file_path, columns=USE_COLS, null_values=["NA"], infer_schema_length=10000)
@@ -113,7 +110,9 @@ def internal_run(lib, size, op, file_path, iteration, is_warmup=False):
             csv_query = f"SELECT {cols_str} FROM read_csv_auto('{file_path}', nullstr='NA')"
             if op == "filter": track_metrics_internal(lib, size, op, iteration, lambda: duckdb.sql(f"SELECT * FROM ({csv_query}) WHERE ID_MUNICIP = 355030").df(), is_warmup)
             if op == "aggr": track_metrics_internal(lib, size, op, iteration, lambda: duckdb.sql(f"SELECT CS_SEXO, SUM(NU_IDADE_N) FROM ({csv_query}) GROUP BY CS_SEXO").df(), is_warmup)
-            if op == "join": track_metrics_internal(lib, size, op, iteration, lambda: duckdb.sql(f"SELECT * FROM ({csv_query}) AS t JOIN lk_pd ON t.CS_SEXO = lk_pd.CS_SEXO").df(), is_warmup)
+            if op == "join": 
+                duckdb.register("lk_pd", lk_pd)
+                track_metrics_internal(lib, size, op, iteration, lambda: duckdb.sql(f"SELECT * FROM ({csv_query}) AS t JOIN lk_pd ON t.CS_SEXO = lk_pd.CS_SEXO").df(), is_warmup)
             if op == "sort": track_metrics_internal(lib, size, op, iteration, lambda: duckdb.sql(f"SELECT * FROM ({csv_query}) ORDER BY DT_NOTIFIC").df(), is_warmup)
 
         if lib == "pyspark":

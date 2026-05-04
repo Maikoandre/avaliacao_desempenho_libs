@@ -6,3 +6,4 @@ __marimo__
 
 skills/
 scripts/.tmp
+scripts/benchmark_results.json
