@@ -12,7 +12,7 @@ import subprocess
 
 # --- ADAPTIVE CONFIGURATION ---
 TOTAL_RAM_GB = psutil.virtual_memory().total / (1024**3)
-IS_POWERFUL_PC = TOTAL_RAM_GB >= 7.0
+IS_POWERFUL_PC = TOTAL_RAM_GB >= 8.0
 
 # --- SUBPROCESS RUNNER LOGIC ---
 
@@ -107,9 +107,7 @@ if __name__ == "__main__":
     PROJECT_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, ".."))
     
     datasets = {
-        "500MB": os.path.join(PROJECT_ROOT, "data/dataset_500mb.parquet"),
-        "1GB": os.path.join(PROJECT_ROOT, "data/dataset_1gb.parquet"),
-        "2GB": os.path.join(PROJECT_ROOT, "data/dataset_2gb.parquet")
+        "SINAN_2024": os.path.join(PROJECT_ROOT, "data/sinan_dengue_sample_2024.parquet")
     }
     
     libs = ["pandas", "polars", "duckdb", "pyspark"]
