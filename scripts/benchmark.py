@@ -169,8 +169,9 @@ if __name__ == "__main__":
     
     libs = ["pandas", "polars", "duckdb", "pyspark"]
     ops = ["filter", "aggr", "join", "sort"]
-    NUM_ITERATIONS = 1
+    NUM_ITERATIONS = 36
     results = []
+
 
     for label, path in datasets.items():
         if not os.path.exists(path): 
