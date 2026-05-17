@@ -38,6 +38,7 @@ def track_metrics_internal(lib, size, op, iteration, func, is_warmup=False):
     process = psutil.Process()
     
     # Snapshots
+    process.cpu_percent(interval=None) # Initialize process CPU percent
     t_start = time.perf_counter()
     cpu_start = process.cpu_times()
     disk_start = psutil.disk_io_counters()
@@ -52,11 +53,13 @@ def track_metrics_internal(lib, size, op, iteration, func, is_warmup=False):
         sys.exit(1)
 
     # End snapshots
+    cpu_perc = process.cpu_percent(interval=None)
     t_end = time.perf_counter()
     cpu_end = process.cpu_times()
     disk_end = psutil.disk_io_counters()
     
     mem_peak = process.memory_info().rss / (1024 * 1024)
+    mem_perc = process.memory_percent()
     
     result = {
         "library": lib, 
@@ -64,12 +67,12 @@ def track_metrics_internal(lib, size, op, iteration, func, is_warmup=False):
         "operation": op, 
         "iteration": int(iteration),
         "status": "SUCCESS",
-        "time_s": t_end - t_start, 
-        "mem_mb": mem_peak,
-        "cpu_user_s": cpu_end.user - cpu_start.user, 
-        "cpu_sys_s": cpu_end.system - cpu_start.system,
-        "disk_read_mb": (disk_end.read_bytes - disk_start.read_bytes) / (1024 * 1024),
-        "disk_write_mb": (disk_end.write_bytes - disk_start.write_bytes) / (1024 * 1024)
+        "time_s": round(t_end - t_start, 4), 
+        "mem_mb": int(mem_peak),
+        "cpu_user_s": round(cpu_end.user - cpu_start.user, 4), 
+        "cpu_sys_s": round(cpu_end.system - cpu_start.system, 4),
+        "disk_read_mb": int((disk_end.read_bytes - disk_start.read_bytes) / (1024 * 1024)),
+        "disk_write_mb": int((disk_end.write_bytes - disk_start.write_bytes) / (1024 * 1024))
     }
     print(f"RESULT_JSON:{json.dumps(result)}")
     sys.exit(0)
@@ -159,9 +162,9 @@ if __name__ == "__main__":
     PROJECT_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, ".."))
     
     datasets = {
-        "500MB": os.path.join(PROJECT_ROOT, "data/dataset_500mb.csv"),
-        "1GB": os.path.join(PROJECT_ROOT, "data/dataset_1gb.csv"),
-        "2GB": os.path.join(PROJECT_ROOT, "data/dataset_2gb.csv"),
+        "256MB": os.path.join(PROJECT_ROOT, "data/dataset_256mb.csv"),
+        "512MB": os.path.join(PROJECT_ROOT, "data/dataset_512mb.csv"),
+        "1024MB": os.path.join(PROJECT_ROOT, "data/dataset_1024mb.csv"),
     }
     
     libs = ["pandas", "polars", "duckdb", "pyspark"]
@@ -180,12 +183,6 @@ if __name__ == "__main__":
             for op in ops:
                 print(f"    Testing {op}...")
                 
-                # --- WARMUP ---
-                print("      Warmup phase...", end=" ", flush=True)
-                cmd_warm = [sys.executable, SCRIPT_PATH, "--internal-run", "--lib", lib, "--size", label, "--op", op, "--path", path, "--iteration", "0", "--warmup"]
-                subprocess.run(cmd_warm, capture_output=True, text=True, timeout=900)
-                print("Done.")
-
                 # --- MEASUREMENT ---
                 for i in range(NUM_ITERATIONS):
                     try:
@@ -220,7 +217,7 @@ if __name__ == "__main__":
                         else:
                             last_res = results[-1]
                             if (i + 1) % 5 == 0 or (i + 1) == NUM_ITERATIONS:
-                                print(f"      Iter {i+1}/{NUM_ITERATIONS}: {last_res['time_s']:.4f}s | DiskR: {last_res['disk_read_mb']:.1f}MB")
+                                print(f"      Iter {i+1}/{NUM_ITERATIONS}: {last_res['time_s']:.4f}s | CPU(user): {last_res.get('cpu_user_s', 0):.2f}s | RAM: {last_res.get('mem_mb', 0)}MB | DiskR: {last_res['disk_read_mb']}MB")
                                 
                     except subprocess.TimeoutExpired:
                         print(f"      Iter {i+1}: TIMEOUT")

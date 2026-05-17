@@ -60,6 +60,6 @@ if __name__ == "__main__":
         print(f"Error: Base file {base} not found.")
     else:
         # Generate the requested CSV datasets, ensuring they are strictly over the target
-        scale_dataset(base, os.path.join(data_dir, "dataset_500mb.csv"), 500)
-        scale_dataset(base, os.path.join(data_dir, "dataset_1gb.csv"), 1000)
-        scale_dataset(base, os.path.join(data_dir, "dataset_2gb.csv"), 2000)
+        scale_dataset(base, os.path.join(data_dir, "dataset_256mb.csv"), 256)
+        scale_dataset(base, os.path.join(data_dir, "dataset_512mb.csv"), 512)
+        scale_dataset(base, os.path.join(data_dir, "dataset_1024mb.csv"), 1024)
