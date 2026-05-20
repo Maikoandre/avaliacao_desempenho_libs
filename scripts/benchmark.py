@@ -1,18 +1,28 @@
 import os
-import time
-import psutil
+import sys
+import json
+import subprocess
+import argparse
 import pandas as pd
 import polars as pl
 import duckdb
 from pyspark.sql import SparkSession
-import json
-import gc
-import sys
-import subprocess
-import argparse
+from metrics import measure_all
 
 # --- ADAPTIVE CONFIGURATION ---
-TOTAL_RAM_GB = psutil.virtual_memory().total / (1024**3)
+def get_total_ram_gb():
+    try:
+        pages = os.sysconf('SC_PHYS_PAGES')
+        page_size = os.sysconf('SC_PAGE_SIZE')
+        return (pages * page_size) / (1024**3)
+    except ValueError:
+        with open('/proc/meminfo') as f:
+            for line in f:
+                if line.startswith('MemTotal:'):
+                    return int(line.split()[1]) / (1024**2)
+    return 4.0
+
+TOTAL_RAM_GB = get_total_ram_gb()
 IS_POWERFUL_PC = TOTAL_RAM_GB >= 8.0
 
 # --- COLUMNS AND DTYPES ---
@@ -20,7 +30,7 @@ USE_COLS = ["ID_MUNICIP", "CS_SEXO", "NU_IDADE_N", "DT_NOTIFIC"]
 PANDAS_DTYPES = {
     "ID_MUNICIP": "int32",
     "CS_SEXO": "category",
-    "NU_IDADE_N": "float32",  # float because of potential NAs
+    "NU_IDADE_N": "float32",
     "DT_NOTIFIC": "category"
 }
 
@@ -34,45 +44,25 @@ def track_metrics_internal(lib, size, op, iteration, func, is_warmup=False):
             pass
         return
 
-    gc.collect()
-    process = psutil.Process()
-    
-    # Snapshots
-    process.cpu_percent(interval=None) # Initialize process CPU percent
-    t_start = time.perf_counter()
-    cpu_start = process.cpu_times()
-    disk_start = psutil.disk_io_counters()
-    
     try:
-        func()
+        metrics = measure_all(func)
     except MemoryError:
         print("STATUS:FAILED_OOM")
-        sys.exit(0) # Exit cleanly so parent reads status
+        sys.exit(0)
     except Exception as e:
         print(f"STATUS:FAILED_ERROR:{str(e)}")
         sys.exit(1)
 
-    # End snapshots
-    cpu_perc = process.cpu_percent(interval=None)
-    t_end = time.perf_counter()
-    cpu_end = process.cpu_times()
-    disk_end = psutil.disk_io_counters()
-    
-    mem_peak = process.memory_info().rss / (1024 * 1024)
-    mem_perc = process.memory_percent()
-    
     result = {
-        "library": lib, 
-        "dataset_size": size, 
-        "operation": op, 
+        "library": lib,
+        "dataset_size": size,
+        "operation": op,
         "iteration": int(iteration),
         "status": "SUCCESS",
-        "time_s": round(t_end - t_start, 4), 
-        "mem_mb": int(mem_peak),
-        "cpu_user_s": round(cpu_end.user - cpu_start.user, 4), 
-        "cpu_sys_s": round(cpu_end.system - cpu_start.system, 4),
-        "disk_read_mb": int((disk_end.read_bytes - disk_start.read_bytes) / (1024 * 1024)),
-        "disk_write_mb": int((disk_end.write_bytes - disk_start.write_bytes) / (1024 * 1024))
+        "time_s": metrics["time_s"],
+        "mem_mb": metrics["mem_peak_mb"],
+        "cpu_user_s": metrics["cpu_user_s"],
+        "cpu_sys_s": metrics["cpu_sys_s"],
     }
     print(f"RESULT_JSON:{json.dumps(result)}")
     sys.exit(0)
@@ -218,7 +208,7 @@ if __name__ == "__main__":
                         else:
                             last_res = results[-1]
                             if (i + 1) % 5 == 0 or (i + 1) == NUM_ITERATIONS:
-                                print(f"      Iter {i+1}/{NUM_ITERATIONS}: {last_res['time_s']:.4f}s | CPU(user): {last_res.get('cpu_user_s', 0):.2f}s | RAM: {last_res.get('mem_mb', 0)}MB | DiskR: {last_res['disk_read_mb']}MB")
+                                print(f"      Iter {i+1}/{NUM_ITERATIONS}: {last_res['time_s']:.4f}s | CPU(user): {last_res.get('cpu_user_s', 0):.2f}s | RAM: {last_res.get('mem_mb', 0)}MB")
                                 
                     except subprocess.TimeoutExpired:
                         print(f"      Iter {i+1}: TIMEOUT")

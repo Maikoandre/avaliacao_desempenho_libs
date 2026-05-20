@@ -14,7 +14,7 @@ def _():
 
 @app.cell
 def _(pl):
-    data = pl.read_json('benchmark_results_csv.json')
+    data = pl.read_json('scripts/benchmark_results_csv.json')
     return (data,)
 
 
