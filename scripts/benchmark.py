@@ -7,7 +7,7 @@ import pandas as pd
 import polars as pl
 import duckdb
 from pyspark.sql import SparkSession
-from metrics import measure_all
+from metrics import measure_all, measure_all_spark
 
 # --- ADAPTIVE CONFIGURATION ---
 def get_total_ram_gb():
@@ -45,7 +45,7 @@ def track_metrics_internal(lib, size, op, iteration, func, is_warmup=False):
         return
 
     try:
-        metrics = measure_all(func)
+        metrics = measure_all_spark(func) if lib == "pyspark" else measure_all(func)
     except MemoryError:
         print("STATUS:FAILED_OOM")
         sys.exit(0)
