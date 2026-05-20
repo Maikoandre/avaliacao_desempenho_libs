@@ -63,6 +63,7 @@ def track_metrics_internal(lib, size, op, iteration, pipeline_func, is_warmup=Fa
         "mem_mb": metrics["mem_peak_mb"],
         "cpu_user_s": metrics["cpu_user_s"],
         "cpu_sys_s": metrics["cpu_sys_s"],
+        "cpu_mips": metrics["cpu_mips"],
     }
     print(f"RESULT_JSON:{json.dumps(result)}")
     sys.exit(0)
@@ -88,24 +89,14 @@ def internal_run(lib, size, op, file_path, iteration, is_warmup=False, phase="op
 
         elif lib == "polars":
             def load():
-                if not IS_POWERFUL_PC:
-                    os.environ["POLARS_MAX_THREADS"] = "1"
-                    return pl.scan_csv(file_path, null_values=["NA"], infer_schema_length=10000).select(USE_COLS)
                 return pl.read_csv(file_path, columns=USE_COLS, null_values=["NA"], infer_schema_length=10000)
 
             def operation(df):
                 lk = pl.DataFrame({"CS_SEXO": ["1", "2", "9"], "SEXO_DESC": ["M", "F", "I"]})
-                if not IS_POWERFUL_PC:
-                    lk = lk.lazy()
-                    if op == "filter": return df.filter(pl.col("ID_MUNICIP") == 355030).collect(engine='streaming')
-                    if op == "aggr": return df.group_by("CS_SEXO").agg(pl.col("NU_IDADE_N").sum()).collect(engine='streaming')
-                    if op == "join": return df.join(lk, on="CS_SEXO").collect(engine='streaming')
-                    if op == "sort": return df.sort("DT_NOTIFIC").collect(engine='streaming')
-                else:
-                    if op == "filter": return df.filter(pl.col("ID_MUNICIP") == 355030)
-                    if op == "aggr": return df.group_by("CS_SEXO").agg(pl.col("NU_IDADE_N").sum())
-                    if op == "join": return df.join(lk, on="CS_SEXO")
-                    if op == "sort": return df.sort("DT_NOTIFIC")
+                if op == "filter": return df.filter(pl.col("ID_MUNICIP") == 355030)
+                if op == "aggr": return df.group_by("CS_SEXO").agg(pl.col("NU_IDADE_N").sum())
+                if op == "join": return df.join(lk, on="CS_SEXO")
+                if op == "sort": return df.sort("DT_NOTIFIC")
 
             if phase == "load":
                 track_metrics_internal(lib, size, "load", iteration, load, is_warmup)
@@ -116,16 +107,17 @@ def internal_run(lib, size, op, file_path, iteration, is_warmup=False, phase="op
         elif lib == "duckdb":
             def load():
                 cols_str = ", ".join(USE_COLS)
-                return duckdb.sql(f"SELECT {cols_str} FROM read_csv_auto('{file_path}', nullstr='NA')")
+                duckdb.sql(f"CREATE OR REPLACE TABLE _bench_data AS SELECT {cols_str} FROM read_csv_auto('{file_path}', nullstr='NA')")
+                return duckdb.table("_bench_data")
 
             def operation(rel):
                 lk = pd.DataFrame({"CS_SEXO": ["1", "2", "9"], "SEXO_DESC": ["M", "F", "I"]})
-                if op == "filter": return rel.filter("ID_MUNICIP = 355030").df()
-                if op == "aggr": return rel.aggregate("SELECT CS_SEXO, SUM(NU_IDADE_N) GROUP BY CS_SEXO").df()
+                if op == "filter": return duckdb.sql("SELECT * FROM _bench_data WHERE ID_MUNICIP = 355030").df()
+                if op == "aggr": return duckdb.sql("SELECT CS_SEXO, SUM(NU_IDADE_N) FROM _bench_data GROUP BY CS_SEXO").df()
                 if op == "join":
-                    duckdb.register("lk_duck", lk)
-                    return rel.query("lk_duck", f"SELECT * FROM self JOIN lk_duck ON self.CS_SEXO = lk_duck.CS_SEXO").df()
-                if op == "sort": return rel.order("DT_NOTIFIC").df()
+                    duckdb.register("_bench_lk", lk)
+                    return duckdb.sql("SELECT * FROM _bench_data JOIN _bench_lk ON _bench_data.CS_SEXO = _bench_lk.CS_SEXO").df()
+                if op == "sort": return duckdb.sql("SELECT * FROM _bench_data ORDER BY DT_NOTIFIC").df()
 
             if phase == "load":
                 track_metrics_internal(lib, size, "load", iteration, load, is_warmup)
@@ -135,6 +127,13 @@ def internal_run(lib, size, op, file_path, iteration, is_warmup=False, phase="op
 
         elif lib == "pyspark":
             def load():
+                spark_mem = "8g" if IS_POWERFUL_PC else "1g"
+                spark = SparkSession.builder.appName("Bench").config("spark.driver.memory", spark_mem).getOrCreate()
+                df = spark.read.csv(file_path, header=True, inferSchema=True, nullValue='NA').select(USE_COLS)
+                df.count()
+                spark.stop()
+
+            def setup_spark_and_df():
                 spark_mem = "8g" if IS_POWERFUL_PC else "1g"
                 spark = SparkSession.builder.appName("Bench").config("spark.driver.memory", spark_mem).getOrCreate()
                 df = spark.read.csv(file_path, header=True, inferSchema=True, nullValue='NA').select(USE_COLS)
@@ -150,9 +149,9 @@ def internal_run(lib, size, op, file_path, iteration, is_warmup=False, phase="op
                 return result
 
             if phase == "load":
-                track_metrics_internal(lib, size, "load", iteration, lambda: load(), is_warmup)
+                track_metrics_internal(lib, size, "load", iteration, load, is_warmup)
             else:
-                spark, df = load()
+                spark, df = setup_spark_and_df()
                 track_metrics_internal(lib, size, op, iteration, lambda: operation(spark, df), is_warmup)
 
     except MemoryError:
@@ -196,7 +195,7 @@ if __name__ == "__main__":
 
     libs = ["pandas", "polars", "duckdb", "pyspark"]
     ops = ["filter", "aggr", "join", "sort"]
-    NUM_ITERATIONS = 36
+    NUM_ITERATIONS = 1
     results = []
 
     for label, path in datasets.items():
@@ -241,7 +240,7 @@ if __name__ == "__main__":
                     else:
                         last_res = results[-1]
                         if (i + 1) % 5 == 0 or (i + 1) == NUM_ITERATIONS:
-                            print(f"      Iter {i+1}/{NUM_ITERATIONS}: {last_res['time_s']:.4f}s | CPU(user): {last_res.get('cpu_user_s', 0):.2f}s | RAM: {last_res.get('mem_mb', 0)}MB")
+                            print(f"      Iter {i+1}/{NUM_ITERATIONS}: {last_res['time_s']:.4f}s | MIPS: {last_res.get('cpu_mips', 0):.0f} | RAM: {last_res.get('mem_mb', 0)}MB")
 
                 except subprocess.TimeoutExpired:
                     print(f"      Iter {i+1}: TIMEOUT")
@@ -284,7 +283,7 @@ if __name__ == "__main__":
                         else:
                             last_res = results[-1]
                             if (i + 1) % 5 == 0 or (i + 1) == NUM_ITERATIONS:
-                                print(f"      Iter {i+1}/{NUM_ITERATIONS}: {last_res['time_s']:.4f}s | CPU(user): {last_res.get('cpu_user_s', 0):.2f}s | RAM: {last_res.get('mem_mb', 0)}MB")
+                                print(f"      Iter {i+1}/{NUM_ITERATIONS}: {last_res['time_s']:.4f}s | MIPS: {last_res.get('cpu_mips', 0):.0f} | RAM: {last_res.get('mem_mb', 0)}MB")
 
                     except subprocess.TimeoutExpired:
                         print(f"      Iter {i+1}: TIMEOUT")

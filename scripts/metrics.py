@@ -4,35 +4,46 @@ import gc
 import os
 
 
-def measure_all(func, include_children=False):
+def _get_cpu_frequency_mhz():
+    """Lê a frequência máxima do CPU em MHz a partir de /proc/cpuinfo."""
+    try:
+        with open("/proc/cpuinfo") as f:
+            for line in f:
+                if line.startswith("cpu MHz"):
+                    return float(line.split(":")[1].strip())
+    except (FileNotFoundError, ValueError):
+        pass
+    try:
+        with open("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq") as f:
+            return int(f.read().strip()) / 1000
+    except (FileNotFoundError, ValueError):
+        pass
+    return 2500.0
+
+
+def measure_all(func):
     """Mede tempo, CPU e memória pico em uma única execução."""
     gc.collect()
+    cpu_freq_mhz = _get_cpu_frequency_mhz()
     t_start = time.perf_counter()
     ru_start = resource.getrusage(resource.RUSAGE_SELF)
-    if include_children:
-        ru_children_start = resource.getrusage(resource.RUSAGE_CHILDREN)
 
     func()
 
     t_end = time.perf_counter()
     ru_end = resource.getrusage(resource.RUSAGE_SELF)
-    if include_children:
-        ru_children_end = resource.getrusage(resource.RUSAGE_CHILDREN)
 
-    user = ru_end.ru_utime - ru_start.ru_utime
-    sys = ru_end.ru_stime - ru_start.ru_stime
-    mem = ru_end.ru_maxrss
+    wall_time = t_end - t_start
+    cpu_time = (ru_end.ru_utime - ru_start.ru_utime) + (ru_end.ru_stime - ru_start.ru_stime)
 
-    if include_children:
-        user += ru_children_end.ru_utime - ru_children_start.ru_utime
-        sys += ru_children_end.ru_stime - ru_children_start.ru_stime
-        mem = max(mem, ru_children_end.ru_maxrss)
+    mips = (cpu_time / wall_time * cpu_freq_mhz) if wall_time > 0 else 0.0
 
     return {
-        "time_s": round(t_end - t_start, 4),
-        "cpu_user_s": round(user, 4),
-        "cpu_sys_s": round(sys, 4),
-        "mem_peak_mb": round(mem / 1024, 2),
+        "time_s": round(wall_time, 4),
+        "cpu_user_s": round(ru_end.ru_utime - ru_start.ru_utime, 4),
+        "cpu_sys_s": round(ru_end.ru_stime - ru_start.ru_stime, 4),
+        "cpu_mips": round(mips, 2),
+        "mem_peak_mb": round(ru_end.ru_maxrss / 1024, 2),
     }
 
 
@@ -51,8 +62,8 @@ def _get_java_child_pids():
                         ppid = int(line.split()[1])
                         break
                 if ppid == my_pid:
-                    with open(f"/proc/{entry}/cmdline") as cmd:
-                        if b"java" in cmd.read().lower().encode():
+                    with open(f"/proc/{entry}/cmdline", "rb") as cmd:
+                        if b"java" in cmd.read().lower():
                             java_pids.append(int(entry))
         except (FileNotFoundError, PermissionError, ProcessLookupError):
             pass
@@ -76,8 +87,9 @@ def _read_proc_cpu_times(pid):
     try:
         with open(f"/proc/{pid}/stat") as f:
             parts = f.read().split()
-            utime = int(parts[13]) / os.sysconf("SC_CLK_TCK")
-            stime = int(parts[14]) / os.sysconf("SC_CLK_TCK")
+            clk = os.sysconf("SC_CLK_TCK")
+            utime = int(parts[13]) / clk
+            stime = int(parts[14]) / clk
             return utime, stime
     except (FileNotFoundError, PermissionError, ProcessLookupError, IndexError):
         pass
@@ -87,11 +99,12 @@ def _read_proc_cpu_times(pid):
 def measure_all_spark(func):
     """Mede tempo, CPU e memória incluindo processos Java filhos do Spark."""
     gc.collect()
+    cpu_freq_mhz = _get_cpu_frequency_mhz()
     t_start = time.perf_counter()
     ru_start = resource.getrusage(resource.RUSAGE_SELF)
 
     java_pids_before = _get_java_child_pids()
-    cpu_before = sum(_read_proc_cpu_times(p) for p in java_pids_before)
+    cpu_before = sum((_read_proc_cpu_times(p) for p in java_pids_before), start=(0.0, 0.0))
 
     func()
 
@@ -99,19 +112,20 @@ def measure_all_spark(func):
     ru_end = resource.getrusage(resource.RUSAGE_SELF)
 
     java_pids_after = _get_java_child_pids()
-    cpu_after = sum(_read_proc_cpu_times(p) for p in java_pids_after)
-    mem_java = max((_read_proc_mem_mb(p) for p in java_pids_after), default=0)
+    cpu_after = sum((_read_proc_cpu_times(p) for p in java_pids_after), start=(0.0, 0.0))
+    mem_java = max((_read_proc_mem_mb(p) for p in set(java_pids_before) | set(java_pids_after)), default=0)
 
-    all_pids = set(java_pids_before) | set(java_pids_after)
-    mem_java = max((_read_proc_mem_mb(p) for p in all_pids), default=0)
-
+    wall_time = t_end - t_start
     user = (ru_end.ru_utime - ru_start.ru_utime) + (cpu_after[0] - cpu_before[0])
     sys = (ru_end.ru_stime - ru_start.ru_stime) + (cpu_after[1] - cpu_before[1])
+    cpu_time = user + sys
+    mips = (cpu_time / wall_time * cpu_freq_mhz) if wall_time > 0 else 0.0
     mem = max(ru_end.ru_maxrss / 1024, mem_java)
 
     return {
-        "time_s": round(t_end - t_start, 4),
+        "time_s": round(wall_time, 4),
         "cpu_user_s": round(user, 4),
         "cpu_sys_s": round(sys, 4),
+        "cpu_mips": round(mips, 2),
         "mem_peak_mb": round(mem, 2),
     }
