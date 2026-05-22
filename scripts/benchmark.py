@@ -79,7 +79,8 @@ def internal_run(lib, size, op, file_path, iteration, is_warmup=False, phase="op
                 if op == "sort": return df.sort_values("DT_NOTIFIC")
 
             if phase == "load":
-                track_metrics_internal(lib, size, "load", iteration, load, is_warmup)
+                op_name = f"load_{op}" if op != "load" else "load"
+                track_metrics_internal(lib, size, op_name, iteration, load, is_warmup)
             else:
                 df = load()
                 track_metrics_internal(lib, size, op, iteration, lambda: operation(df), is_warmup)
@@ -96,7 +97,8 @@ def internal_run(lib, size, op, file_path, iteration, is_warmup=False, phase="op
                 if op == "sort": return df.sort("DT_NOTIFIC")
 
             if phase == "load":
-                track_metrics_internal(lib, size, "load", iteration, load, is_warmup)
+                op_name = f"load_{op}" if op != "load" else "load"
+                track_metrics_internal(lib, size, op_name, iteration, load, is_warmup)
             else:
                 df = load()
                 track_metrics_internal(lib, size, op, iteration, lambda: operation(df), is_warmup)
@@ -117,7 +119,8 @@ def internal_run(lib, size, op, file_path, iteration, is_warmup=False, phase="op
                 if op == "sort": return duckdb.sql("SELECT * FROM _bench_data ORDER BY DT_NOTIFIC").df()
 
             if phase == "load":
-                track_metrics_internal(lib, size, "load", iteration, load, is_warmup)
+                op_name = f"load_{op}" if op != "load" else "load"
+                track_metrics_internal(lib, size, op_name, iteration, load, is_warmup)
             else:
                 rel = load()
                 track_metrics_internal(lib, size, op, iteration, lambda: operation(rel), is_warmup)
@@ -143,7 +146,8 @@ def internal_run(lib, size, op, file_path, iteration, is_warmup=False, phase="op
                 elif op == "sort": result = df.sort("DT_NOTIFIC").collect()
 
             if phase == "load":
-                track_metrics_internal(lib, size, "load", iteration, load, is_warmup)
+                op_name = f"load_{op}" if op != "load" else "load"
+                track_metrics_internal(lib, size, op_name, iteration, load, is_warmup)
             else:
                 spark, df = setup_spark_and_df()
                 track_metrics_internal(lib, size, op, iteration, lambda: operation(spark, df), is_warmup)
@@ -201,50 +205,50 @@ if __name__ == "__main__":
         for lib in libs:
             print(f"  Testing {lib}...")
 
-            # --- PHASE 1: LOAD ---
-            print(f"    Phase: load")
-            for i in range(NUM_ITERATIONS):
-                try:
-                    cmd = [sys.executable, SCRIPT_PATH, "--internal-run", "--lib", lib, "--size", label, "--op", "load", "--path", path, "--iteration", str(i+1), "--phase", "load"]
-                    proc = subprocess.run(cmd, capture_output=True, text=True, timeout=900)
-
-                    found_result = False
-                    status = "SUCCESS"
-
-                    if proc.returncode != 0:
-                        status = "FAILED_CRASH"
-
-                    for line in proc.stdout.splitlines():
-                        if line.startswith("RESULT_JSON:"):
-                            res = json.loads(line.replace("RESULT_JSON:", ""))
-                            results.append(res)
-                            found_result = True
-                        elif line.startswith("STATUS:"):
-                            status = line.replace("STATUS:", "")
-
-                    if not found_result:
-                        if "FAILED_OOM" in status or proc.returncode == 137:
-                            status = "FAILED_OOM"
-                        error_res = {
-                            "library": lib, "dataset_size": label, "operation": "load", "iteration": i+1,
-                            "status": status, "time_s": None, "mem_mb": None
-                        }
-                        results.append(error_res)
-                        print(f"      Iter {i+1}/{NUM_ITERATIONS}: {status}")
-                    else:
-                        last_res = results[-1]
-                        if (i + 1) % 5 == 0 or (i + 1) == NUM_ITERATIONS:
-                            print(f"      Iter {i+1}/{NUM_ITERATIONS}: {last_res['time_s']:.4f}s | RAM: {last_res.get('mem_mb', 0)}MB")
-
-                except subprocess.TimeoutExpired:
-                    print(f"      Iter {i+1}: TIMEOUT")
-                    results.append({
-                        "library": lib, "dataset_size": label, "operation": "load", "iteration": i+1,
-                        "status": "TIMEOUT", "time_s": None, "mem_mb": None
-                    })
-
-            # --- PHASE 2: OPERATIONS ---
             for op in ops:
+                # --- PHASE: LOAD (for this operation) ---
+                print(f"    Phase: load_{op}")
+                for i in range(NUM_ITERATIONS):
+                    try:
+                        cmd = [sys.executable, SCRIPT_PATH, "--internal-run", "--lib", lib, "--size", label, "--op", op, "--path", path, "--iteration", str(i+1), "--phase", "load"]
+                        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=900)
+
+                        found_result = False
+                        status = "SUCCESS"
+
+                        if proc.returncode != 0:
+                            status = "FAILED_CRASH"
+
+                        for line in proc.stdout.splitlines():
+                            if line.startswith("RESULT_JSON:"):
+                                res = json.loads(line.replace("RESULT_JSON:", ""))
+                                results.append(res)
+                                found_result = True
+                            elif line.startswith("STATUS:"):
+                                status = line.replace("STATUS:", "")
+
+                        if not found_result:
+                            if "FAILED_OOM" in status or proc.returncode == 137:
+                                status = "FAILED_OOM"
+                            error_res = {
+                                "library": lib, "dataset_size": label, "operation": f"load_{op}", "iteration": i+1,
+                                "status": status, "time_s": None, "mem_mb": None
+                            }
+                            results.append(error_res)
+                            print(f"      Iter {i+1}/{NUM_ITERATIONS}: {status}")
+                        else:
+                            last_res = results[-1]
+                            if (i + 1) % 5 == 0 or (i + 1) == NUM_ITERATIONS:
+                                print(f"      Iter {i+1}/{NUM_ITERATIONS}: {last_res['time_s']:.4f}s | RAM: {last_res.get('mem_mb', 0)}MB")
+
+                    except subprocess.TimeoutExpired:
+                        print(f"      Iter {i+1}: TIMEOUT")
+                        results.append({
+                            "library": lib, "dataset_size": label, "operation": f"load_{op}", "iteration": i+1,
+                            "status": "TIMEOUT", "time_s": None, "mem_mb": None
+                        })
+
+                # --- PHASE: OPERATION ---
                 print(f"    Phase: {op}")
                 for i in range(NUM_ITERATIONS):
                     try:

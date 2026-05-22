@@ -9,7 +9,6 @@ dependencies = [
     "duckdb>=1.5.2",
     "jupyter>=1.1.1",
     "marimo>=0.23.1",
-    "markitdown[all]>=0.1.5",
     "matplotlib>=3.10.9",
     "memory-profiler>=0.61.0",
     "pandas>=3.0.2",
