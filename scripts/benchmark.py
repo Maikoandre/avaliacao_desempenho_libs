@@ -61,9 +61,6 @@ def track_metrics_internal(lib, size, op, iteration, pipeline_func, is_warmup=Fa
         "status": "SUCCESS",
         "time_s": metrics["time_s"],
         "mem_mb": metrics["mem_peak_mb"],
-        "cpu_user_s": metrics["cpu_user_s"],
-        "cpu_sys_s": metrics["cpu_sys_s"],
-        "cpu_mips": metrics["cpu_mips"],
     }
     print(f"RESULT_JSON:{json.dumps(result)}")
     sys.exit(0)
@@ -131,7 +128,6 @@ def internal_run(lib, size, op, file_path, iteration, is_warmup=False, phase="op
                 spark = SparkSession.builder.appName("Bench").config("spark.driver.memory", spark_mem).getOrCreate()
                 df = spark.read.csv(file_path, header=True, inferSchema=True, nullValue='NA').select(USE_COLS)
                 df.count()
-                spark.stop()
 
             def setup_spark_and_df():
                 spark_mem = "8g" if IS_POWERFUL_PC else "1g"
@@ -145,8 +141,6 @@ def internal_run(lib, size, op, file_path, iteration, is_warmup=False, phase="op
                 elif op == "aggr": result = df.groupBy("CS_SEXO").sum("NU_IDADE_N").collect()
                 elif op == "join": result = df.join(lk, "CS_SEXO").collect()
                 elif op == "sort": result = df.sort("DT_NOTIFIC").collect()
-                spark.stop()
-                return result
 
             if phase == "load":
                 track_metrics_internal(lib, size, "load", iteration, load, is_warmup)
@@ -195,7 +189,7 @@ if __name__ == "__main__":
 
     libs = ["pandas", "polars", "duckdb", "pyspark"]
     ops = ["filter", "aggr", "join", "sort"]
-    NUM_ITERATIONS = 1
+    NUM_ITERATIONS = 5
     results = []
 
     for label, path in datasets.items():
@@ -240,7 +234,7 @@ if __name__ == "__main__":
                     else:
                         last_res = results[-1]
                         if (i + 1) % 5 == 0 or (i + 1) == NUM_ITERATIONS:
-                            print(f"      Iter {i+1}/{NUM_ITERATIONS}: {last_res['time_s']:.4f}s | MIPS: {last_res.get('cpu_mips', 0):.0f} | RAM: {last_res.get('mem_mb', 0)}MB")
+                            print(f"      Iter {i+1}/{NUM_ITERATIONS}: {last_res['time_s']:.4f}s | RAM: {last_res.get('mem_mb', 0)}MB")
 
                 except subprocess.TimeoutExpired:
                     print(f"      Iter {i+1}: TIMEOUT")
@@ -283,7 +277,7 @@ if __name__ == "__main__":
                         else:
                             last_res = results[-1]
                             if (i + 1) % 5 == 0 or (i + 1) == NUM_ITERATIONS:
-                                print(f"      Iter {i+1}/{NUM_ITERATIONS}: {last_res['time_s']:.4f}s | MIPS: {last_res.get('cpu_mips', 0):.0f} | RAM: {last_res.get('mem_mb', 0)}MB")
+                                print(f"      Iter {i+1}/{NUM_ITERATIONS}: {last_res['time_s']:.4f}s | RAM: {last_res.get('mem_mb', 0)}MB")
 
                     except subprocess.TimeoutExpired:
                         print(f"      Iter {i+1}: TIMEOUT")
