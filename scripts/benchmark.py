@@ -136,6 +136,7 @@ def internal_run(lib, size, op, file_path, iteration, is_warmup=False, phase="op
                 spark_mem = "8g" if IS_POWERFUL_PC else "1g"
                 spark = SparkSession.builder.appName("Bench").config("spark.driver.memory", spark_mem).getOrCreate()
                 df = spark.read.csv(file_path, header=True, inferSchema=True, nullValue='NA').select(USE_COLS)
+                df.cache().count()
                 return spark, df
 
             def operation(spark, df):
@@ -208,6 +209,8 @@ if __name__ == "__main__":
             for op in ops:
                 # --- PHASE: LOAD (for this operation) ---
                 print(f"    Phase: load_{op}")
+                warmup_cmd = [sys.executable, SCRIPT_PATH, "--internal-run", "--lib", lib, "--size", label, "--op", op, "--path", path, "--iteration", "0", "--phase", "load", "--warmup"]
+                subprocess.run(warmup_cmd, capture_output=True, text=True, timeout=900)
                 for i in range(NUM_ITERATIONS):
                     try:
                         cmd = [sys.executable, SCRIPT_PATH, "--internal-run", "--lib", lib, "--size", label, "--op", op, "--path", path, "--iteration", str(i+1), "--phase", "load"]
@@ -250,6 +253,8 @@ if __name__ == "__main__":
 
                 # --- PHASE: OPERATION ---
                 print(f"    Phase: {op}")
+                warmup_cmd = [sys.executable, SCRIPT_PATH, "--internal-run", "--lib", lib, "--size", label, "--op", op, "--path", path, "--iteration", "0", "--phase", "operation", "--warmup"]
+                subprocess.run(warmup_cmd, capture_output=True, text=True, timeout=900)
                 for i in range(NUM_ITERATIONS):
                     try:
                         cmd = [sys.executable, SCRIPT_PATH, "--internal-run", "--lib", lib, "--size", label, "--op", op, "--path", path, "--iteration", str(i+1), "--phase", "operation"]

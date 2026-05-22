@@ -59,12 +59,11 @@ def _read_proc_mem_mb(pid):
 def measure_all_spark(func):
     """Mede tempo e memória incluindo processos Java filhos do Spark."""
     gc.collect()
-    t_start = time.perf_counter()
 
     java_pids_before = _get_java_child_pids()
 
+    t_start = time.perf_counter()
     func()
-
     t_end = time.perf_counter()
 
     java_pids_after = _get_java_child_pids()
