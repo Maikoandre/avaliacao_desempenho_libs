@@ -206,51 +206,51 @@ if __name__ == "__main__":
         for lib in libs:
             print(f"  Testing {lib}...")
 
+            # --- PHASE: LOAD ---
+            print("    Phase: load")
+            warmup_cmd = [sys.executable, SCRIPT_PATH, "--internal-run", "--lib", lib, "--size", label, "--op", "load", "--path", path, "--iteration", "0", "--phase", "load", "--warmup"]
+            subprocess.run(warmup_cmd, capture_output=True, text=True, timeout=900)
+            for i in range(NUM_ITERATIONS):
+                try:
+                    cmd = [sys.executable, SCRIPT_PATH, "--internal-run", "--lib", lib, "--size", label, "--op", "load", "--path", path, "--iteration", str(i+1), "--phase", "load"]
+                    proc = subprocess.run(cmd, capture_output=True, text=True, timeout=900)
+
+                    found_result = False
+                    status = "SUCCESS"
+
+                    if proc.returncode != 0:
+                        status = "FAILED_CRASH"
+
+                    for line in proc.stdout.splitlines():
+                        if line.startswith("RESULT_JSON:"):
+                            res = json.loads(line.replace("RESULT_JSON:", ""))
+                            results.append(res)
+                            found_result = True
+                        elif line.startswith("STATUS:"):
+                            status = line.replace("STATUS:", "")
+
+                    if not found_result:
+                        if "FAILED_OOM" in status or proc.returncode == 137:
+                            status = "FAILED_OOM"
+                        error_res = {
+                            "library": lib, "dataset_size": label, "operation": "load", "iteration": i+1,
+                            "status": status, "time_s": None, "mem_mb": None
+                        }
+                        results.append(error_res)
+                        print(f"      Iter {i+1}/{NUM_ITERATIONS}: {status}")
+                    else:
+                        last_res = results[-1]
+                        if (i + 1) % 5 == 0 or (i + 1) == NUM_ITERATIONS:
+                            print(f"      Iter {i+1}/{NUM_ITERATIONS}: {last_res['time_s']:.4f}s | RAM: {last_res.get('mem_mb', 0)}MB")
+
+                except subprocess.TimeoutExpired:
+                    print(f"      Iter {i+1}: TIMEOUT")
+                    results.append({
+                        "library": lib, "dataset_size": label, "operation": "load", "iteration": i+1,
+                        "status": "TIMEOUT", "time_s": None, "mem_mb": None
+                    })
+
             for op in ops:
-                # --- PHASE: LOAD (for this operation) ---
-                print(f"    Phase: load_{op}")
-                warmup_cmd = [sys.executable, SCRIPT_PATH, "--internal-run", "--lib", lib, "--size", label, "--op", op, "--path", path, "--iteration", "0", "--phase", "load", "--warmup"]
-                subprocess.run(warmup_cmd, capture_output=True, text=True, timeout=900)
-                for i in range(NUM_ITERATIONS):
-                    try:
-                        cmd = [sys.executable, SCRIPT_PATH, "--internal-run", "--lib", lib, "--size", label, "--op", op, "--path", path, "--iteration", str(i+1), "--phase", "load"]
-                        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=900)
-
-                        found_result = False
-                        status = "SUCCESS"
-
-                        if proc.returncode != 0:
-                            status = "FAILED_CRASH"
-
-                        for line in proc.stdout.splitlines():
-                            if line.startswith("RESULT_JSON:"):
-                                res = json.loads(line.replace("RESULT_JSON:", ""))
-                                results.append(res)
-                                found_result = True
-                            elif line.startswith("STATUS:"):
-                                status = line.replace("STATUS:", "")
-
-                        if not found_result:
-                            if "FAILED_OOM" in status or proc.returncode == 137:
-                                status = "FAILED_OOM"
-                            error_res = {
-                                "library": lib, "dataset_size": label, "operation": f"load_{op}", "iteration": i+1,
-                                "status": status, "time_s": None, "mem_mb": None
-                            }
-                            results.append(error_res)
-                            print(f"      Iter {i+1}/{NUM_ITERATIONS}: {status}")
-                        else:
-                            last_res = results[-1]
-                            if (i + 1) % 5 == 0 or (i + 1) == NUM_ITERATIONS:
-                                print(f"      Iter {i+1}/{NUM_ITERATIONS}: {last_res['time_s']:.4f}s | RAM: {last_res.get('mem_mb', 0)}MB")
-
-                    except subprocess.TimeoutExpired:
-                        print(f"      Iter {i+1}: TIMEOUT")
-                        results.append({
-                            "library": lib, "dataset_size": label, "operation": f"load_{op}", "iteration": i+1,
-                            "status": "TIMEOUT", "time_s": None, "mem_mb": None
-                        })
-
                 # --- PHASE: OPERATION ---
                 print(f"    Phase: {op}")
                 warmup_cmd = [sys.executable, SCRIPT_PATH, "--internal-run", "--lib", lib, "--size", label, "--op", op, "--path", path, "--iteration", "0", "--phase", "operation", "--warmup"]
