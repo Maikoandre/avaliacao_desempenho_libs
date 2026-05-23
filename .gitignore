@@ -6,5 +6,5 @@ __marimo__
 
 skills/
 scripts/.tmp
-scripts/benchmark_results.json
+# scripts/benchmark_results.json
 benchmark_results_csv.json
