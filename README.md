@@ -19,10 +19,17 @@ O estudo avaliou o desempenho das quatro bibliotecas executando operações anal
 * **Velocidade de Polars e DuckDB:** Em junções complexas com 1GB, Polars e DuckDB processam dados em **0,01s**, superando o Pandas em até **80 vezes**.
 * **Overhead da JVM no PySpark:** O PySpark local levou até **20s** em ordenações, mostrando-se ineficiente para nó único devido ao custo de runtime Java e serialização.
 
-Os gráficos em alta resolução detalhando estes resultados estão salvos na pasta `/assets`:
-* [assets/escalabilidade_tempo.png](assets/escalabilidade_tempo.png) - Curva de Escalabilidade Temporal (Escala Log)
-* [assets/consumo_ram_1gb.png](assets/consumo_ram_1gb.png) - Pico de Consumo de RAM por Operação
-* [assets/estabilidade_tempo.png](assets/estabilidade_tempo.png) - Boxplot de Dispersão e Estabilidade
+Os gráficos em alta resolução detalhando estes resultados estão salvos na pasta `/assets` e podem ser visualizados diretamente abaixo:
+
+### Curva de Escalabilidade Temporal (Tempo de Execução por Operação)
+![Curva de Escalabilidade Temporal](assets/escalabilidade_tempo.png)
+
+### Pico de Consumo de RAM por Operação (Dataset de 1GB)
+![Pico de Consumo de RAM](assets/consumo_ram_1gb.png)
+
+### Boxplot de Dispersão e Estabilidade (Dataset de 1GB)
+![Boxplot de Estabilidade](assets/estabilidade_tempo.png)
+
 
 ## Pré-requisitos
 
