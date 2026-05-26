@@ -1,0 +1,53 @@
+\begin{thebibliography}{}
+
+\bibitem[Cirillo and Galante 2025]{cirillo:2025}
+Cirillo, G. and Galante, G. (2025).
+\newblock Proposta de compara{\c{c}}{\~a}o da efici{\^e}ncia e escalabilidade de bibliotecas python para manipula{\c{c}}{\~a}o e an{\'a}lise de dados.
+\newblock In {\em Anais da XXV Escola Regional de Alto Desempenho da Regi{\~a}o Sul}, pages 133--134, Porto Alegre, RS, Brasil. SBC.
+
+\bibitem[DuckDB 2026]{duckdb:ai2026}
+DuckDB (2026).
+\newblock Vectorized execution engine.
+\newblock [Online; accessed May-2026].
+
+\bibitem[Foundation 2026a]{duckdb:2026a}
+Foundation, D. (2026a).
+\newblock Duckdb: An in-process {SQL} {OLAP} database management system.
+\newblock [Online; accessed May-2026].
+
+\bibitem[Foundation 2026b]{duckdb:2026b}
+Foundation, D. (2026b).
+\newblock Duckdb documentation.
+\newblock [Online; accessed May-2026].
+
+\bibitem[McKinney 2012]{mckinney:2012}
+McKinney, W. (2012).
+\newblock {\em Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython}.
+\newblock O'Reilly Media.
+
+\bibitem[Moutinho et~al. 2024]{moutinho:2024}
+Moutinho, S. O.~M., Martins, P. G.~M., Alencar, D.~F., and Coneglian, C.~S. (2024).
+\newblock Ci{\^e}ncia da informa{\c{c}}{\~a}o e ci{\^e}ncia de dados: converg{\^e}ncias interdisciplinares.
+\newblock {\em Encontros Bibli: revista de biblioteconomia e ci{\^e}ncia da informa{\c{c}}{\~a}o}, 29:e99127.
+
+\bibitem[NVIDIA 2026]{nvidia:2026}
+NVIDIA (2026).
+\newblock What is polars?
+\newblock [Online; accessed May-2026].
+
+\bibitem[Ourique 2024]{ourique:2024}
+Ourique, J. P.~J. (2024).
+\newblock An{\'a}lise experimental do desempenho de bibliotecas de ci{\^e}ncia de dados em workflows com alto custo computacional.
+\newblock Trabalho de conclus{\~a}o de curso (gradua{\c{c}}{\~a}o), Universidade Federal do Rio Grande do Sul, Porto Alegre.
+
+\bibitem[Polars 2026]{polars:2026}
+Polars (2026).
+\newblock Polars: User guide.
+\newblock [Online; accessed May-2026].
+
+\bibitem[Wikipedia 2025]{wikipedia:2025}
+Wikipedia (2025).
+\newblock Pandas (software) --- {W}ikipedia{,} the free encyclopedia.
+\newblock [Online; accessed May-2026].
+
+\end{thebibliography}
