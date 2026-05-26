@@ -1,17 +1,17 @@
 # Avaliação de Desempenho de Bibliotecas
 
-Este projeto tem como objetivo realizar a avaliação e comparação de desempenho de diferentes bibliotecas de processamento e manipulação de dados em Python, como **Pandas**, **Polars**, **DuckDB** e **Apache Spark**.
+Este projeto tem como objetivo realizar a avaliação e comparação de desempenho de diferentes bibliotecas de processamento e manipulação de dados em Python, como **Pandas**, **Polars**, **DuckDB** e **Apache Spark**, em um ambiente com recursos computacionais limitados.
 
 ## Principais Resultados do Benchmark
 
 O estudo avaliou o desempenho das quatro bibliotecas executando operações analíticas fundamentais (filtragem, agregação, junção e ordenação) em conjuntos de dados de 256MB, 512MB e 1GB em uma máquina local com hardware limitado (8GB de RAM). Os resultados medidos revelaram conclusões fundamentais sobre o perfil de cada biblioteca:
 
-| Biblioteca | Tempo Médio (s) | Pico de RAM (1GB) | Escalabilidade | Melhor Caso de Uso |
+| Biblioteca | Tempo Médio (s) | Pico de RAM (1GB) | Desempenho | Melhor Caso de Uso |
 | :--- | :--- | :--- | :--- | :--- |
-| **DuckDB** | **Excelente** (Subsegundo / ms) | **Mínimo** (~620 MB) | Excepcional (Linear / *spill-to-disk*) | Análises analíticas embarcadas e computação limitada |
-| **Polars** | **Excelente** (Subsegundo / ms) | Baixo (~1.500 MB) | Excepcional (Rust-powered multi-threaded) | Engenharia de dados local de alta velocidade |
-| **Pandas** | Moderado (Baixo em Junções) | **Crítico** (~7.400 MB) | Crítico (Em memória, alto risco de OOM) | Análises exploratórias e volumes pequenos ($<256$MB) |
-| **Spark** | Muito Baixo (JVM local local) | Moderado (700-1.700 MB) | Moderado (JVM local / *cold start*) | Processamento distribuído em clusters reais (Big Data) |
+| **DuckDB** | **Excelente** | **Mínimo** (~620 MB) | Excepcional | Análises analíticas embarcadas e computação limitada |
+| **Polars** | **Excelente** | Baixo (~1.500 MB) | Excepcional | Engenharia de dados local de alta velocidade |
+| **Pandas** | Moderado | **Crítico** (~7.400 MB) | Crítico (Alto risco de OOM) | Análises exploratórias e volumes pequenos (<=256MB) |
+| **Spark** | Ruim | Moderado (700-1.700 MB) | Moderado | Processamento distribuído em clusters |
 
 ### Destaques das Métricas:
 * **Consumo Crítico de RAM do Pandas:** Para processar 1GB de dados, o Pandas consome cerca de **7,4 GB (93% da memória total disponível)**, colocando o fluxo à beira de falhas por falta de memória (OOM).
