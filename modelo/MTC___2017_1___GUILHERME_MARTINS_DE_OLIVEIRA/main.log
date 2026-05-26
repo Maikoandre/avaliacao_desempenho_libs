@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.18)  26 MAY 2026 10:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.18)  26 MAY 2026 10:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -273,13 +273,13 @@ File: ot1phv.fd 2020/03/25 scalable font definitions for OT1/phv.
 <assets/consumo_ram_1gb.pdf, id=120, 711.88702pt x 423.47202pt>
 File: assets/consumo_ram_1gb.pdf Graphic file (type pdf)
 <use assets/consumo_ram_1gb.pdf>
-Package pdftex.def Info: assets/consumo_ram_1gb.pdf  used on input line 133.
+Package pdftex.def Info: assets/consumo_ram_1gb.pdf  used on input line 132.
 (pdftex.def)             Requested size: 341.43437pt x 203.1027pt.
  [6 <./assets/consumo_ram_1gb.pdf>]
 <assets/estabilidade_tempo.pdf, id=215, 640.46602pt x 423.52972pt>
 File: assets/estabilidade_tempo.pdf Graphic file (type pdf)
 <use assets/estabilidade_tempo.pdf>
-Package pdftex.def Info: assets/estabilidade_tempo.pdf  used on input line 148.
+Package pdftex.def Info: assets/estabilidade_tempo.pdf  used on input line 147.
 (pdftex.def)             Requested size: 298.75264pt x 197.56615pt.
  [7 <./assets/estabilidade_tempo.pdf>] (./main.bbl) [8
 
