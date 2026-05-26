@@ -9,22 +9,6 @@ import duckdb
 from pyspark.sql import SparkSession
 from metrics import measure_all, measure_all_spark
 
-# --- ADAPTIVE CONFIGURATION ---
-def get_total_ram_gb():
-    try:
-        pages = os.sysconf('SC_PHYS_PAGES')
-        page_size = os.sysconf('SC_PAGE_SIZE')
-        return (pages * page_size) / (1024**3)
-    except ValueError:
-        with open('/proc/meminfo') as f:
-            for line in f:
-                if line.startswith('MemTotal:'):
-                    return int(line.split()[1]) / (1024**2)
-    return 4.0
-
-TOTAL_RAM_GB = get_total_ram_gb()
-IS_POWERFUL_PC = TOTAL_RAM_GB >= 8.0
-
 # --- COLUMNS AND DTYPES ---
 USE_COLS = ["ID_MUNICIP", "CS_SEXO", "NU_IDADE_N", "DT_NOTIFIC"]
 PANDAS_DTYPES = {
@@ -127,13 +111,13 @@ def internal_run(lib, size, op, file_path, iteration, is_warmup=False, phase="op
 
         elif lib == "pyspark":
             def load():
-                spark_mem = "8g" if IS_POWERFUL_PC else "1g"
+                spark_mem = "1g"
                 spark = SparkSession.builder.appName("Bench").config("spark.driver.memory", spark_mem).getOrCreate()
                 df = spark.read.csv(file_path, header=True, inferSchema=True, nullValue='NA').select(USE_COLS)
                 df.count()
 
             def setup_spark_and_df():
-                spark_mem = "8g" if IS_POWERFUL_PC else "1g"
+                spark_mem = "1g"
                 spark = SparkSession.builder.appName("Bench").config("spark.driver.memory", spark_mem).getOrCreate()
                 df = spark.read.csv(file_path, header=True, inferSchema=True, nullValue='NA').select(USE_COLS)
                 df.cache().count()
@@ -178,9 +162,6 @@ if __name__ == "__main__":
     if args.internal_run:
         internal_run(args.lib, args.size, args.op, args.path, args.iteration, args.warmup, args.phase)
         sys.exit(0)
-
-    print(f"System Check: {TOTAL_RAM_GB:.1f}GB RAM detected.")
-    print(f"Mode: {'HIGH PERFORMANCE' if IS_POWERFUL_PC else 'SAFETY/LOW RAM'}")
 
     SCRIPT_PATH = os.path.abspath(__file__)
     SCRIPT_DIR = os.path.dirname(SCRIPT_PATH)

@@ -11,7 +11,7 @@ O estudo avaliou o desempenho das quatro bibliotecas executando operações anal
 | **DuckDB** | **Excelente** (Subsegundo / ms) | **Mínimo** (~620 MB) | Excepcional (Linear / *spill-to-disk*) | Análises analíticas embarcadas e computação limitada |
 | **Polars** | **Excelente** (Subsegundo / ms) | Baixo (~1.500 MB) | Excepcional (Rust-powered multi-threaded) | Engenharia de dados local de alta velocidade |
 | **Pandas** | Moderado (Baixo em Junções) | **Crítico** (~7.400 MB) | Crítico (Em memória, alto risco de OOM) | Análises exploratórias e volumes pequenos ($<256$MB) |
-| **PySpark** | Muito Baixo (JVM local local) | Moderado (700-1.700 MB) | Moderado (JVM local / *cold start*) | Processamento distribuído em clusters reais (Big Data) |
+| **Spark** | Muito Baixo (JVM local local) | Moderado (700-1.700 MB) | Moderado (JVM local / *cold start*) | Processamento distribuído em clusters reais (Big Data) |
 
 ### Destaques das Métricas:
 * **Consumo Crítico de RAM do Pandas:** Para processar 1GB de dados, o Pandas consome cerca de **7,4 GB (93% da memória total disponível)**, colocando o fluxo à beira de falhas por falta de memória (OOM).

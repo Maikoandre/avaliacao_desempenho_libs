@@ -1,38 +1,29 @@
 import os
-import polars as pl
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-# 1. Configurar diretório de destino
 assets_dir = "/home/maiko/Projects/avaliacao_desempenho_libs/assets"
 os.makedirs(assets_dir, exist_ok=True)
 
-# 2. Carregar os dados
-json_path = "/home/maiko/Projects/avaliacao_desempenho_libs/scripts/benchmark_results_csv.json"
-data = pl.read_json(json_path)
+json_path = "/home/maiko/Projects/avaliacao_desempenho_libs/src/benchmark_results_csv.json"
+data = pd.read_json(json_path)
 
-# Configurar parâmetros de qualidade para publicação científica (SBC)
 sns.set_theme(style="whitegrid", context="paper", font_scale=1.2)
 plt.rcParams.update({
     'font.family': 'sans-serif',
-    'figure.dpi': 300,        # Alta qualidade para impressão/PDF
+    'figure.dpi': 300,
     'savefig.dpi': 300,
-    'savefig.bbox': 'tight'   # Corta margens brancas extras
+    'savefig.bbox': 'tight'
 })
 
-# ==============================================================================
 # GRÁFICO 1: Curva de Escalabilidade (Tempo de Execução por Operação)
-# ==============================================================================
 print("Gerando Gráfico 1: Curva de Escalabilidade...")
 op_pures = ["filter", "aggr", "join", "sort"]
-df_clean = (
-    data.filter(
-        (pl.col("status") == "SUCCESS") & 
-        (pl.col("operation").is_in(op_pures))
-    )
-    .to_pandas()
-)
+df_clean = data[
+    (data["status"] == "SUCCESS") & 
+    (data["operation"].isin(op_pures))
+].copy()
 
 op_map = {
     "filter": "Filtragem",
@@ -75,18 +66,13 @@ g.savefig(os.path.join(assets_dir, "escalabilidade_tempo.png"))
 g.savefig(os.path.join(assets_dir, "escalabilidade_tempo.pdf"))
 plt.close()
 
-# ==============================================================================
 # GRÁFICO 2: Pico de Memória RAM (Dataset 1024MB) com IC 95%
-# ==============================================================================
 print("Gerando Gráfico 2: Pico de RAM...")
-df_ram_1gb = (
-    data.filter(
-        (pl.col("dataset_size") == "1024MB") &
-        (pl.col("status") == "SUCCESS") &
-        (pl.col("operation").is_in(op_pures))
-    )
-    .to_pandas()
-)
+df_ram_1gb = data[
+    (data["dataset_size"] == "1024MB") &
+    (data["status"] == "SUCCESS") &
+    (data["operation"].isin(op_pures))
+].copy()
 df_ram_1gb["operation_pt"] = df_ram_1gb["operation"].map(op_map)
 df_ram_1gb["library"] = df_ram_1gb["library"].str.capitalize()
 
@@ -111,18 +97,13 @@ plt.savefig(os.path.join(assets_dir, "consumo_ram_1gb.png"))
 plt.savefig(os.path.join(assets_dir, "consumo_ram_1gb.pdf"))
 plt.close()
 
-# ==============================================================================
 # GRÁFICO 3: Boxplot de Estabilidade/Dispersão (Tempo no Dataset 1024MB)
-# ==============================================================================
 print("Gerando Gráfico 3: Boxplot de Estabilidade...")
-df_stability = (
-    data.filter(
-        (pl.col("dataset_size") == "1024MB") &
-        (pl.col("status") == "SUCCESS") &
-        (pl.col("operation").is_in(op_pures))
-    )
-    .to_pandas()
-)
+df_stability = data[
+    (data["dataset_size"] == "1024MB") &
+    (data["status"] == "SUCCESS") &
+    (data["operation"].isin(op_pures))
+].copy()
 df_stability["library"] = df_stability["library"].str.capitalize()
 
 plt.figure(figsize=(9, 6))
