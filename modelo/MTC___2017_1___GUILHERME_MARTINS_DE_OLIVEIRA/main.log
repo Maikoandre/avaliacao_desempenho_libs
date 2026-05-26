@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.18)  26 MAY 2026 10:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.18)  26 MAY 2026 10:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -113,17 +113,12 @@ LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) o
  (/usr/share/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read2
 \bbl@dirlevel=\count289
- (/usr/share/texmf-dist/tex/generic/babel/locale/invalid/babel-brazil.tex)
-
-Package babel Warning: Name 'brazil' is deprecated.
-(babel)                Use 'brazilian' instead.
-(babel)                Reported on input line 4330.
-
-Package babel Info: Importing font and identification data for brazil
+ (/usr/share/texmf-dist/tex/generic/babel/locale/pt/babel-brazilian.tex)
+Package babel Info: Importing font and identification data for brazilian
 (babel)             from babel-pt-BR.ini. Reported on input line 4330.
-(/usr/share/texmf-dist/tex/generic/babel-portuges/brazilian.ldf
+ (/usr/share/texmf-dist/tex/generic/babel-portuges/brazilian.ldf
 Language: portuges 2026/01/24 v1.2u Portuguese support from the babel system
-Package babel Info: Hyphen rules for 'brazil' set to \l@portuguese
+Package babel Info: Hyphen rules for 'brazilian' set to \l@portuguese
 (babel)             (\language3). Reported on input line 100.
 Package babel Info: Making " an active character on input line 132.
 ))
@@ -134,7 +129,7 @@ File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count290
 ) (./main.aux
-Package babel Info: 'brazil' activates 'portuges' shorthands.
+Package babel Info: 'brazilian' activates 'portuges' shorthands.
 (babel)             Reported on input line 7.
 )
 \openout1 = `main.aux'.
@@ -250,17 +245,7 @@ LaTeX Font Info:    Font shape `OMS/pcr/m/n' in size <10> not available
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 52.
  (/usr/share/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-) [2] [3]
-Underfull \hbox (badness 10000) in paragraph at lines 89--90
-\OT1/ptm/m/n/12 Neste ex-pe-ri-mento, o am-bi-ente de execu[][]ao es-co-lhido foi um no-te-book
- []
-
-
-Underfull \hbox (badness 1924) in paragraph at lines 89--90
-[]\OT1/ptm/m/n/12 , com as se-guin-tes especifica[][]oes: Pro-ces-sa-dor In-tel de 8\TS1/ptm/m/n/12 ª
- []
-
-[4]
+) [2] [3] [4]
 <assets/escalabilidade_tempo.pdf, id=22, 918.732pt x 640.05524pt>
 File: assets/escalabilidade_tempo.pdf Graphic file (type pdf)
 <use assets/escalabilidade_tempo.pdf>
@@ -279,7 +264,7 @@ Package pdftex.def Info: assets/consumo_ram_1gb.pdf  used on input line 132.
 <assets/estabilidade_tempo.pdf, id=215, 640.46602pt x 423.52972pt>
 File: assets/estabilidade_tempo.pdf Graphic file (type pdf)
 <use assets/estabilidade_tempo.pdf>
-Package pdftex.def Info: assets/estabilidade_tempo.pdf  used on input line 147.
+Package pdftex.def Info: assets/estabilidade_tempo.pdf  used on input line 146.
 (pdftex.def)             Requested size: 298.75264pt x 197.56615pt.
  [7 <./assets/estabilidade_tempo.pdf>] (./main.bbl) [8
 
@@ -291,14 +276,14 @@ L3 programming layer <2026-01-19>
  ) 
 Here is how much of TeX's memory you used:
  4432 strings out of 469495
- 73885 string characters out of 5470098
- 502422 words of memory out of 5000000
+ 74022 string characters out of 5470098
+ 502364 words of memory out of 5000000
  33016 multiletter control sequences out of 15000+600000
  645428 words of font info for 71 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
  72i,10n,79p,1312b,370s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (8 pages, 223042 bytes).
+Output written on main.pdf (8 pages, 223073 bytes).
 PDF statistics:
  345 PDF objects out of 1000 (max. 8388607)
  81 compressed objects within 1 object stream

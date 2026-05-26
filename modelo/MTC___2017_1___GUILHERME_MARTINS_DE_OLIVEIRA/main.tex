@@ -4,7 +4,7 @@
 \usepackage{graphicx,url}
 \usepackage{float}
 \usepackage[utf8]{inputenc}  
-\usepackage[brazil]{babel}
+\usepackage[brazilian]{babel}
 
 \sloppy
 
@@ -86,7 +86,7 @@ O programa desenvolvido executa os seguintes passos: (1) prepara os dados de ent
 
 \subsection{Ambiente de Execução}
 
-Neste experimento, o ambiente de execução escolhido foi um notebook \mbox{Dell Inspiron 15-3583}, com as seguintes especificações: Processador Intel de 8ª geração (\mbox{i7-8565U}), 8GB de memória RAM DDR4 a 2400 MHz distribuídos em um slot SODIMM, SSD NVMe de 256GB M.2 PCIe, placa integrada Intel UHD Graphics 620 e sistema operacional Arch Linux versão minimal (sem interface gráfica). Esse hardware foi escolhido por representar um ambiente limitado para análise de dados, onde cada recurso é indispensável para possibilitar a execução das bibliotecas selecionadas de forma controlada.
+Neste experimento, o ambiente de execução escolhido foi um notebook Dell Inspiron \mbox{15-3583}, com as seguintes especificações: Processador Intel de 8ª geração (\mbox{i7-8565U}), 8GB de memória RAM DDR4 a 2400 MHz distribuídos em um slot SODIMM, SSD NVMe de 256GB M.2 PCIe, placa integrada Intel UHD Graphics 620 e sistema operacional Arch Linux versão minimal (sem interface gráfica). Esse hardware foi escolhido por representar um ambiente limitado para análise de dados, onde cada recurso é indispensável para possibilitar a execução das bibliotecas selecionadas de forma controlada. % chktex 8
 
 \subsection{Definição da Variável de Resposta, Fatores e Níveis}
 
@@ -111,7 +111,7 @@ Para mitigar o impacto de vazamentos de memória (\textit{memory leaks}) ou acú
 Esta seção apresenta os resultados experimentais obtidos a partir da execução do benchmark projetado. As análises estão estruturadas em três vertentes principais: a escalabilidade temporal das operações analíticas, a eficiência no consumo de memória RAM (com ênfase no limite físico de hardware de 8GB) e a estabilidade das ferramentas ao longo de rodadas repetidas de teste.
 
 \subsection{Curva de Escalabilidade Temporal}
-\begin{figure}[!ht]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{assets/escalabilidade_tempo.pdf}
 \caption{Curva de Escalabilidade (Tempo de Execução em escala log) por Operação nas Diferentes Bibliotecas.}\label{fig:escalabilidade}
@@ -119,24 +119,23 @@ Esta seção apresenta os resultados experimentais obtidos a partir da execuçã
 
 O desempenho de processamento de cada biblioteca foi avaliado para as quatro operações analíticas principais (filtragem, agregação, junção e ordenação) em função do aumento volumétrico dos dados (256MB, 512MB e 1GB). Os tempos médios das 48 rodadas estão expressos no gráfico de escalabilidade na Figura~\ref{fig:escalabilidade}.
 
-Observa-se que o PySpark exibe, sistematicamente, o maior tempo de processamento em todas as operações analíticas, situando-se entre $10^0$ e $2\cdot 10^1$ segundos. Esse comportamento reflete o custo computacional severo decorrente da inicialização de sua infraestrutura local (JVM, drivers e workers), além da necessária serialização de objetos entre os ambientes Python e Java. Em contrapartida, o Polars e o DuckDB mostram-se extremamente eficientes, mantendo tempos de execução subsegundo (frequentemente na escala de milissegundos, $10^{-2}$ s). 
+Observa-se que o PySpark exibe, sistematicamente, o maior tempo de processamento em todas as operações analíticas, situando-se entre $10^0$ e $2\cdot 10^1$ segundos. Esse comportamento reflete o custo computacional severo decorrente da inicialização de sua infraestrutura local (JVM, drivers e workers), além da necessária serialização de objetos entre os ambientes Python e Java. Em contrapartida, o Polars e o DuckDB mostram-se extremamente eficientes, mantendo tempos de execução subsegundo (frequentemente na escala de milissegundos, $10^{-2}$ s). % chktex 13 
 
-Na operação de filtragem, o Pandas apresenta excelente desempenho para volumes baixos (256MB), sendo ligeiramente mais rápido que o Polars e o DuckDB. Contudo, em operações mais complexas e pesadas como a junção (\textit{join}), o Pandas demonstra baixa escalabilidade temporal: enquanto o Pandas requer cerca de $0,8$ s para o processamento de 1GB, o Polars e o DuckDB executam a mesma carga em apenas $0,01$ s, operando em uma velocidade aproximadamente 80 vezes superior.
+Na operação de filtragem, o Pandas apresenta excelente desempenho para volumes baixos (256MB), sendo ligeiramente mais rápido que o Polars e o DuckDB\@. Contudo, em operações mais complexas e pesadas como a junção (\textit{join}), o Pandas demonstra baixa escalabilidade temporal: enquanto o Pandas requer cerca de $0,8$ s para o processamento de 1GB, o Polars e o DuckDB executam a mesma carga em apenas $0,01$ s, operando em uma velocidade aproximadamente 80 vezes superior.
 
 \subsection{Eficiência no Consumo de Memória RAM}
 
-Considerando que o ambiente computacional avaliado possui restrição física de hardware, a eficiência de alocação de memória é um fator crítico de confiabilidade operacional. A Figura~\ref{fig:ram} ilustra o consumo de pico de memória (RSS) das ferramentas para cada operação durante o processamento de 1GB.
+Considerando que o ambiente computacional avaliado possui restrição física de hardware, a eficiência de alocação de memória é um fator crítico de confiabilidade operacional. A Figura~\ref{fig:ram} ilustra o consumo de pico de memória (RSS) das ferramentas para cada operação durante o processamento de 1GB\@.
 
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.8\textwidth]{assets/consumo_ram_1gb.pdf}
-\caption{Pico de Consumo de RAM (MB) por Operação no Dataset de 1024MB.}
-\label{fig:ram}
+\caption{Pico de Consumo de RAM (MB) por Operação no Dataset de 1024MB.}\label{fig:ram}
 \end{figure}
 
-Os resultados evidenciam que o Pandas aloca constantemente em torno de 7.400 MB de RAM para executar qualquer transformação em 1GB de dados. Essa alocação estática e em memória física consome quase 93\% da capacidade total de hardware disponível, colocando o sistema no limiar de falhas de falta de memória (Out-Of-Memory - OOM) em ambientes produtivos limitados.
+Os resultados evidenciam que o Pandas aloca constantemente em torno de 7.400 MB de RAM para executar qualquer transformação em 1GB de dados. Essa alocação estática e em memória física consome quase 93\% da capacidade total de hardware disponível, colocando o sistema no limiar de falhas de falta de memória (Out-Of-Memory, ou OOM) em ambientes produtivos limitados.
 
-Por outro lado, o DuckDB destaca-se como a ferramenta mais econômica, operando de forma constante na faixa de 600 a 650 MB. Isso é possibilitado por sua arquitetura analítica embarcada que emprega descarregamento dinâmico em disco (\textit{spill-to-disk}) e processamento vetorizado por blocos. O Polars consolidou-se em uma posição intermediária eficiente, estabilizando seu pico de consumo em torno de 1.500 MB, enquanto o PySpark flutuou entre 700 MB e 1.700 MB.
+Por outro lado, o DuckDB destaca-se como a ferramenta mais econômica, operando de forma constante na faixa de 600 a 650 MB\@. Isso é possibilitado por sua arquitetura analítica embarcada que emprega descarregamento dinâmico em disco (\textit{spill-to-disk}) e processamento vetorizado por blocos. O Polars consolidou-se em uma posição intermediária eficiente, estabilizando seu pico de consumo em torno de 1.500 MB, enquanto o PySpark flutuou entre 700 MB e 1.700 MB\@.
 
 \subsection{Estabilidade e Dispersão de Desempenho}
 
@@ -145,8 +144,7 @@ Para avaliar a consistência das ferramentas frente a flutuações e eventuais c
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.7\textwidth]{assets/estabilidade_tempo.pdf}
-\caption{Boxplot de Distribuição do Tempo de Execução no Dataset de 1024MB.}
-\label{fig:estabilidade}
+\caption{Boxplot de Distribuição do Tempo de Execução no Dataset de 1024MB.}\label{fig:estabilidade}
 \end{figure}
 
 O DuckDB obteve a menor mediana de tempo geral, apresentando apenas um \textit{outlier} superior (cerca de 0,6 s) referente à primeira iteração analítica. O Polars apresentou a maior consistência de estabilidade geral, exibindo uma dispersão extremamente compacta e sem quaisquer \textit{outliers}. O PySpark, por sua vez, demonstrou alta volatilidade e dispersão, com tempos oscilando entre 0,6 s e 7 s, além de registrar um pico atípico próximo a 20 segundos, o que reflete a instabilidade do Garbage Collection da JVM sob restrição severa de recursos.
@@ -157,9 +155,9 @@ O DuckDB obteve a menor mediana de tempo geral, apresentando apenas um \textit{o
 
 Este trabalho apresentou uma análise comparativa experimental entre Pandas, Polars, DuckDB e PySpark em um cenário de hardware intencionalmente restrito. 
 
-Os resultados práticos sustentam que a escolha da biblioteca de processamento exerce um impacto profundo na eficiência e na resiliência do sistema. O Pandas, embora amplamente popular e de simples sintaxe, apresentou severas desvantagens em escalabilidade vertical e consumo de RAM, tornando-se uma escolha arriscada para datasets que se aproximam da capacidade física da memória RAM. O PySpark, desenhado para clusters distribuídos de larga escala, revelou-se ineficiente em cenários locais de nó único devido ao seu alto overhead computacional da JVM.
+Os resultados práticos sustentam que a escolha da biblioteca de processamento exerce um impacto profundo na eficiência e na resiliência do sistema. O Pandas, embora amplamente popular e de simples sintaxe, apresentou severas desvantagens em escalabilidade vertical e consumo de RAM\@, tornando-se uma escolha arriscada para datasets que se aproximam da capacidade física da memória RAM\@. O PySpark, desenhado para clusters distribuídos de larga escala, revelou-se ineficiente em cenários locais de nó único devido ao seu alto overhead computacional da JVM\@.
 
-Em contrapartida, as bibliotecas Polars e DuckDB posicionam-se como soluções altamente recomendadas para engenharia de dados em ambientes limitados. Ambas combinam velocidades excepcionais com uma pegada de memória reduzida e otimizada (com destaque especial para a extrema economia de RAM do DuckDB). Como trabalhos futuros, sugere-se a ampliação do benchmark avaliando a influência de outros formatos de persistência de arquivos (como Parquet vs CSV) e a testagem de técnicas de processamento fora da memória (*out-of-core*) em conjuntos de dados multiescala que excedam 10GB.
+Em contrapartida, as bibliotecas Polars e DuckDB posicionam-se como soluções altamente recomendadas para engenharia de dados em ambientes limitados. Ambas combinam velocidades excepcionais com uma pegada de memória reduzida e otimizada (com destaque especial para a extrema economia de RAM do DuckDB). Como trabalhos futuros, sugere-se a ampliação do benchmark avaliando a influência de outros formatos de persistência de arquivos (como Parquet vs CSV) e a testagem de técnicas de processamento fora da memória (*out-of-core*) em conjuntos de dados multiescala que excedam 10GB\@.
 
 \bibliographystyle{sbc}
 \bibliography{sbc-template}

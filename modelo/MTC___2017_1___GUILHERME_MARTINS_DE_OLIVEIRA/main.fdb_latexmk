@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex main"] 1779801219.0373 "main.aux" "main.bbl" "main" 1779801371.46351 0
+["bibtex main"] 1779801706.59551 "main.aux" "main.bbl" "main" 1779801707.2232 0
   "./sbc-template.bib" 1779534935.99737 2477 9db949cd6ed1c3765a6cd6abfc78708a ""
   "./sbc.bst" 1779397348 21863 e2f961827e28074ef5a2bc27ccb7b310 ""
-  "main.aux" 1779801371.25107 3800 c93c71841d08458df083d78e143503e1 "pdflatex"
+  "main.aux" 1779801707.0271 3803 d3048ba13e181e56a831ca02cef43bbc "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1779801370.71027 "/home/maiko/Projects/avaliacao_desempenho_libs/modelo/MTC___2017_1___GUILHERME_MARTINS_DE_OLIVEIRA/main.tex" "main.pdf" "main" 1779801371.46367 0
-  "/home/maiko/Projects/avaliacao_desempenho_libs/modelo/MTC___2017_1___GUILHERME_MARTINS_DE_OLIVEIRA/main.tex" 1779801370.29207 19753 769d637cb0433acfb853c8bfb31a086d ""
+["pdflatex"] 1779801706.66803 "/home/maiko/Projects/avaliacao_desempenho_libs/modelo/MTC___2017_1___GUILHERME_MARTINS_DE_OLIVEIRA/main.tex" "main.pdf" "main" 1779801707.22333 0
+  "/home/maiko/Projects/avaliacao_desempenho_libs/modelo/MTC___2017_1___GUILHERME_MARTINS_DE_OLIVEIRA/main.tex" 1779801705.6051 19793 f6a1f7c263b6927a5092c8a45eea3590 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc" 1775415801 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1775415801 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm" 1775415801 960 379cc0019370a9e0208a0a3f949f847a ""
@@ -55,7 +55,7 @@
   "/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1775415801 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/share/texmf-dist/tex/generic/babel-portuges/brazilian.ldf" 1775415801 6096 b2165a3d4d5e10b4990e15cb0c21a9b0 ""
   "/usr/share/texmf-dist/tex/generic/babel/babel.sty" 1775415801 147019 f2ca437186bfeb562e1066ad59426a04 ""
-  "/usr/share/texmf-dist/tex/generic/babel/locale/invalid/babel-brazil.tex" 1775415801 652 7dccbebb70081db63e04f21ba35d0012 ""
+  "/usr/share/texmf-dist/tex/generic/babel/locale/pt/babel-brazilian.tex" 1775415801 379 9f94ea4211dd06e65f547717726f23f5 ""
   "/usr/share/texmf-dist/tex/generic/babel/locale/pt/babel-pt-BR.ini" 1775415801 4550 1f8aa8e0148d8a21ebf02f586bbb2fc0 ""
   "/usr/share/texmf-dist/tex/generic/babel/txtbabel.def" 1775415801 5231 c1599e5bf7d2ee42743212a7f8d20a56 ""
   "/usr/share/texmf-dist/tex/generic/iftex/iftex.sty" 1775415801 7984 7dbb9280f03c0a315425f1b4f35d43ee ""
@@ -96,9 +96,9 @@
   "assets/escalabilidade_tempo.pdf" 1779668464.15616 32966 825d1207e9994614f4f8b7bdaf17d3a0 ""
   "assets/estabilidade_tempo.pdf" 1779668464.15616 26464 dc81c42b9a668f21fe3495c432d18e4f ""
   "caption2.sty" 1779397348 15189 50845fba222dc25666abc3397b231fab ""
-  "main.aux" 1779801371.25107 3800 c93c71841d08458df083d78e143503e1 "pdflatex"
-  "main.bbl" 1779801219.10706 2116 c7cf03b2f7371874713e3eb05c0f9d52 "bibtex main"
-  "main.tex" 1779801370.29207 19753 769d637cb0433acfb853c8bfb31a086d ""
+  "main.aux" 1779801707.0271 3803 d3048ba13e181e56a831ca02cef43bbc "pdflatex"
+  "main.bbl" 1779801706.6631 2116 c7cf03b2f7371874713e3eb05c0f9d52 "bibtex main"
+  "main.tex" 1779801705.6051 19793 f6a1f7c263b6927a5092c8a45eea3590 ""
   "sbc-template.sty" 1779397348 5280 0a277450ee6cfc82a68e4b0b0f92e15e ""
   (generated)
   "main.aux"
