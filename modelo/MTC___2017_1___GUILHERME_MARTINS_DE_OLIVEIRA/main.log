@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.18)  26 MAY 2026 10:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.18)  26 MAY 2026 10:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -249,22 +249,22 @@ File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 <assets/escalabilidade_tempo.pdf, id=22, 918.732pt x 640.05524pt>
 File: assets/escalabilidade_tempo.pdf Graphic file (type pdf)
 <use assets/escalabilidade_tempo.pdf>
-Package pdftex.def Info: assets/escalabilidade_tempo.pdf  used on input line 116.
+Package pdftex.def Info: assets/escalabilidade_tempo.pdf  used on input line 122.
 (pdftex.def)             Requested size: 341.43437pt x 237.86174pt.
-LaTeX Font Info:    Trying to load font information for OT1+phv on input line 117.
+LaTeX Font Info:    Trying to load font information for OT1+phv on input line 123.
  (/usr/share/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2020/03/25 scalable font definitions for OT1/phv.
 ) [5 <./assets/escalabilidade_tempo.pdf>]
 <assets/consumo_ram_1gb.pdf, id=120, 711.88702pt x 423.47202pt>
 File: assets/consumo_ram_1gb.pdf Graphic file (type pdf)
 <use assets/consumo_ram_1gb.pdf>
-Package pdftex.def Info: assets/consumo_ram_1gb.pdf  used on input line 132.
+Package pdftex.def Info: assets/consumo_ram_1gb.pdf  used on input line 138.
 (pdftex.def)             Requested size: 341.43437pt x 203.1027pt.
  [6 <./assets/consumo_ram_1gb.pdf>]
 <assets/estabilidade_tempo.pdf, id=215, 640.46602pt x 423.52972pt>
 File: assets/estabilidade_tempo.pdf Graphic file (type pdf)
 <use assets/estabilidade_tempo.pdf>
-Package pdftex.def Info: assets/estabilidade_tempo.pdf  used on input line 146.
+Package pdftex.def Info: assets/estabilidade_tempo.pdf  used on input line 152.
 (pdftex.def)             Requested size: 298.75264pt x 197.56615pt.
  [7 <./assets/estabilidade_tempo.pdf>] (./main.bbl) [8
 
@@ -283,7 +283,7 @@ Here is how much of TeX's memory you used:
  16 hyphenation exceptions out of 8191
  72i,10n,79p,1312b,370s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (8 pages, 223073 bytes).
+Output written on main.pdf (8 pages, 223099 bytes).
 PDF statistics:
  345 PDF objects out of 1000 (max. 8388607)
  81 compressed objects within 1 object stream

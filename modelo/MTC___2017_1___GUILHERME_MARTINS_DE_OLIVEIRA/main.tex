@@ -60,7 +60,9 @@ Esta seção apresenta uma visão geral das quatro bibliotecas avaliadas neste e
 
 \subsection{Pandas}
 
-O Pandas é uma das principais bibliotecas de código aberto para manipulação e análise de dados estruturados em Python, amplamente reconhecida pela simplicidade de suas estruturas de \textit{Series} e \textit{DataFrame} e suporte a diversos formatos de arquivos~\cite{mckinney:2012, wikipedia:2025}. Apesar de sua popularidade e maturidade, a biblioteca apresenta limitações significativas em cenários com grandes volumes de dados ou recursos computacionais restritos, decorrentes de seu modelo de processamento majoritariamente em memória (\textit{in-memory}) e sem paralelismo nativo~\cite{wikipedia:2025}. Ainda assim, sua estabilidade e ampla compatibilidade com o ecossistema Python a consolidam como uma referência indispensável para estudos comparativos de desempenho.
+O Pandas é uma das principais bibliotecas de código aberto para manipulação e análise de dados estruturados em Python, amplamente reconhecida pela simplicidade de suas estruturas de \textit{Series} e \textit{DataFrame} e suporte a diversos formatos de arquivos~\cite{mckinney:2012, wikipedia:2025}. 
+
+Apesar de sua popularidade e maturidade, a biblioteca apresenta limitações significativas em cenários com grandes volumes de dados ou recursos computacionais restritos, decorrentes de seu modelo de processamento majoritariamente em memória (\textit{in-memory}) e sem paralelismo nativo~\cite{wikipedia:2025}. Ainda assim, sua estabilidade e ampla compatibilidade com o ecossistema Python a consolidam como uma referência indispensável para estudos comparativos de desempenho.
 
 
 \subsection{Polars}
@@ -70,12 +72,16 @@ O Polars é uma biblioteca de processamento de dados desenvolvida em Rust para m
 
 \subsection{DuckDB}
 
-O DuckDB é um sistema de gerenciamento de banco de dados analítico (OLAP) de código aberto e embarcado (\textit{in-process}), frequentemente associado ao conceito de ``SQLite para análises'' pela simplicidade de uso integrada a consultas de alto desempenho~\cite{duckdb:2026a, duckdb:2026b}. Empregando armazenamento colunar, execução vetorizada e suporte nativo a formatos como CSV, Parquet e Apache Arrow, a ferramenta oferece alta eficiência em operações analíticas como agregações, filtros e junções~\cite{duckdb:ai2026}. Um de seus principais diferenciais frente a soluções puramente em memória é a capacidade de processar volumes de dados que excedem a RAM disponível por meio de mecanismos de descarregamento em disco (\textit{spill to disk}), o que o torna altamente relevante para ambientes computacionais limitados~\cite{duckdb:2026a}.
+O DuckDB é um sistema de gerenciamento de banco de dados analítico (OLAP) de código aberto e embarcado (\textit{in-process}), frequentemente associado ao conceito de ``SQLite para análises'' pela simplicidade de uso integrada a consultas de alto desempenho~\cite{duckdb:2026a, duckdb:2026b}. 
+
+Empregando armazenamento colunar, execução vetorizada e suporte nativo a formatos como CSV, Parquet e Apache Arrow, a ferramenta oferece alta eficiência em operações analíticas como agregações, filtros e junções~\cite{duckdb:ai2026}. Um de seus principais diferenciais frente a soluções puramente em memória é a capacidade de processar volumes de dados que excedem a RAM disponível por meio de mecanismos de descarregamento em disco (\textit{spill to disk}), o que o torna altamente relevante para ambientes computacionais limitados~\cite{duckdb:2026a}.
 
 
 \subsection{Apache Spark (PySpark)}
 
-O PySpark é a interface em Python do Apache Spark, uma plataforma de código aberto voltada ao processamento de dados distribuídos em larga escala (\textit{Big Data}) por meio de RDDs e DataFrames otimizados pelo mecanismo Catalyst. Ao contrário das demais ferramentas avaliadas, ele opera sobre a Máquina Virtual Java (JVM) e utiliza a arquitetura distribuída mestre-trabalhador (Driver-Executor) projetada para clusters. Embora ofereça alta escalabilidade e tolerância a falhas, seu modelo de execução acarreta um elevado consumo basal de RAM e CPU decorrente da inicialização da JVM e da serialização de dados entre processos Python e Java\@. Essa característica torna essencial sua avaliação neste estudo para determinar os limites práticos e a viabilidade da plataforma em ambientes de nó único e recursos severamente limitados.
+O PySpark é a interface em Python do Apache Spark, uma plataforma de código aberto voltada ao processamento de dados distribuídos em larga escala (\textit{Big Data}) por meio de RDDs e DataFrames otimizados pelo mecanismo Catalyst. Ao contrário das demais ferramentas avaliadas, ele opera sobre a Máquina Virtual Java (JVM) e utiliza a arquitetura distribuída mestre-trabalhador (Driver-Executor) projetada para clusters. 
+\newpage
+Embora ofereça alta escalabilidade e tolerância a falhas, seu modelo de execução acarreta um elevado consumo basal de RAM e CPU decorrente da inicialização da JVM e da serialização de dados entre processos Python e Java\@. Essa característica torna essencial sua avaliação neste estudo para determinar os limites práticos e a viabilidade da plataforma em ambientes de nó único e recursos severamente limitados.
 
 
 \section{Desenvolvimento da Análise}
@@ -98,7 +104,7 @@ O comportamento dessas variáveis de resposta foi definido em função de três 
     \item \textbf{Tamanho do dataset:} submetido ao processamento, contendo três níveis: 256MB, 512MB e \mbox{1GB}\@.
     \item \textbf{Operação analítica:} executada sobre os dados, dividida em quatro níveis: filtragem, agregação, junção e ordenação.
 \end{itemize}
-
+\newpage
 \subsection{Execuções}
 
 O experimento adota o método de planejamento fatorial completo, abrangendo todas as combinações possíveis entre as quatro bibliotecas, os três tamanhos de dataset e as quatro operações analíticas, resultando em um arranjo de 48 cenários experimentais executados ao longo de 48 iterações consecutivas. Para assegurar uma comparação justa e fiel da eficiência computacional, o critério de parada foi definido estritamente pela quantidade total de registros processados, garantindo que todas as ferramentas executem exatamente a mesma carga de trabalho em cada teste.
@@ -134,7 +140,7 @@ Considerando que o ambiente computacional avaliado possui restrição física de
 \end{figure}
 
 Os resultados evidenciam que o Pandas aloca constantemente em torno de 7.400 MB de RAM para executar qualquer transformação em 1GB de dados. Essa alocação estática e em memória física consome quase 93\% da capacidade total de hardware disponível, colocando o sistema no limiar de falhas de falta de memória (Out-Of-Memory, ou OOM) em ambientes produtivos limitados.
-
+\newpage
 Por outro lado, o DuckDB destaca-se como a ferramenta mais econômica, operando de forma constante na faixa de 600 a 650 MB\@. Isso é possibilitado por sua arquitetura analítica embarcada que emprega descarregamento dinâmico em disco (\textit{spill-to-disk}) e processamento vetorizado por blocos. O Polars consolidou-se em uma posição intermediária eficiente, estabilizando seu pico de consumo em torno de 1.500 MB, enquanto o PySpark flutuou entre 700 MB e 1.700 MB\@.
 
 \subsection{Estabilidade e Dispersão de Desempenho}
