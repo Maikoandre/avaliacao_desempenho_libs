@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.18)  26 MAY 2026 10:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.18)  26 MAY 2026 10:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -122,7 +122,7 @@ Package babel Info: Hyphen rules for 'brazilian' set to \l@portuguese
 (babel)             (\language3). Reported on input line 100.
 Package babel Info: Making " an active character on input line 132.
 ))
-LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 24.
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 23.
  (/usr/share/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 ) (/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
@@ -134,20 +134,20 @@ Package babel Info: 'brazilian' activates 'portuges' shorthands.
 )
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -224,47 +224,47 @@ Package grfext Info: Graphics extension search list:
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 26.
+(Font)              <12> on input line 25.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 26.
+(Font)              <8> on input line 25.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 26.
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 26.
+(Font)              <6> on input line 25.
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 25.
  (/usr/share/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-LaTeX Font Info:    Trying to load font information for OMS+pcr on input line 26.
+LaTeX Font Info:    Trying to load font information for OMS+pcr on input line 25.
  (/usr/share/texmf-dist/tex/latex/psnfss/omspcr.fd
 File: omspcr.fd 
 )
 LaTeX Font Info:    Font shape `OMS/pcr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 26.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 25.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}]
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 52.
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 51.
  (/usr/share/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 ) [2] [3] [4]
 <assets/escalabilidade_tempo.pdf, id=22, 918.732pt x 640.05524pt>
 File: assets/escalabilidade_tempo.pdf Graphic file (type pdf)
 <use assets/escalabilidade_tempo.pdf>
-Package pdftex.def Info: assets/escalabilidade_tempo.pdf  used on input line 122.
+Package pdftex.def Info: assets/escalabilidade_tempo.pdf  used on input line 121.
 (pdftex.def)             Requested size: 341.43437pt x 237.86174pt.
-LaTeX Font Info:    Trying to load font information for OT1+phv on input line 123.
+LaTeX Font Info:    Trying to load font information for OT1+phv on input line 122.
  (/usr/share/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2020/03/25 scalable font definitions for OT1/phv.
 ) [5 <./assets/escalabilidade_tempo.pdf>]
 <assets/consumo_ram_1gb.pdf, id=120, 711.88702pt x 423.47202pt>
 File: assets/consumo_ram_1gb.pdf Graphic file (type pdf)
 <use assets/consumo_ram_1gb.pdf>
-Package pdftex.def Info: assets/consumo_ram_1gb.pdf  used on input line 138.
+Package pdftex.def Info: assets/consumo_ram_1gb.pdf  used on input line 137.
 (pdftex.def)             Requested size: 341.43437pt x 203.1027pt.
  [6 <./assets/consumo_ram_1gb.pdf>]
 <assets/estabilidade_tempo.pdf, id=215, 640.46602pt x 423.52972pt>
 File: assets/estabilidade_tempo.pdf Graphic file (type pdf)
 <use assets/estabilidade_tempo.pdf>
-Package pdftex.def Info: assets/estabilidade_tempo.pdf  used on input line 152.
+Package pdftex.def Info: assets/estabilidade_tempo.pdf  used on input line 151.
 (pdftex.def)             Requested size: 298.75264pt x 197.56615pt.
  [7 <./assets/estabilidade_tempo.pdf>] (./main.bbl) [8
 
