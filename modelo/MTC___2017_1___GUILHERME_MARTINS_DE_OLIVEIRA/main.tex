@@ -15,22 +15,28 @@
 \address{Tecnologia em Análise e Desenvolvimento de Sistemas\\
   Instituto Federal de Educação, Ciência e Tecnologia Baiano, Campus Guanambi\\
   Guanambi-BA, Brasil
-  \email{\{email: denisilvalima536.com, emerson.santos,}
+  \email{\{denisilvalima536.com, emersonnevess80,}
   \email{felipebaiano04, maikosousa.tech\}}
   \email{@gmail.com}
 }
+
+\makeatletter
+\def\@cite#1#2{({#1\if@tempswa , #2\fi})}
+\makeatother
 
 \begin{document} 
 
 \maketitle
 
+\begin{resumo} 
+  Este estudo experimental apresenta um benchmark comparativo de desempenho entre quatro das principais bibliotecas de processamento de dados em Python: Pandas, Polars, DuckDB e PySpark. O objetivo consiste em avaliar eficiência em tempo de execução e o consumo máximo de memória RAM em ambientes de hardware com recursos limitados. A avaliação foi delimitada por um planejamento fatorial completo utilizando três tamanhos de conjuntos de dados (256MB, 512MB e 1GB) e quatro operações analíticas fundamentais: filtragem, agregação, junção e ordenação. Para garantir a estabilidade das medições e a integridade do isolamento de recursos, cada teste foi executado de forma estanque por meio de subprocessos individuais, antecedidos por uma etapa de aquecimento (warmup). Os resultados indicam trade-offs significativos entre as ferramentas: o Pandas exibe simplicidade mas baixa escalabilidade e alto risco de falha por falta de memória (OOM); o Polars e o DuckDB destacam-se pela alta eficiência de processamento e gerenciamento otimizado de recursos; enquanto o PySpark, embora robusto, impõe um overhead considerável de inicialização em ambientes restritos.
+\end{resumo}
+
 \begin{abstract}
   This experimental study presents a comparative performance benchmark among four of the main data processing libraries in Python: Pandas, Polars, DuckDB, and PySpark. The objective is to evaluate execution time efficiency and peak RAM memory consumption in hardware environments with limited resources. The evaluation was defined by a full factorial design using three dataset sizes (256MB, 512MB, and 1GB) and four fundamental analytical operations: filtering, aggregation, joining, and sorting. To ensure measurement stability and resource isolation integrity, each test was executed independently using individual subprocesses, preceded by a warmup phase. The results indicate significant trade-offs among the tools: Pandas exhibits simplicity but low scalability and a high risk of Out-Of-Memory (OOM) failures; Polars and DuckDB stand out for their high processing efficiency and optimized resource management; while PySpark, although robust, imposes considerable initialization overhead in restricted environments.
 \end{abstract}
      
-\begin{resumo} 
-  Este estudo experimental apresenta um benchmark comparativo de desempenho entre quatro das principais bibliotecas de processamento de dados em Python: Pandas, Polars, DuckDB e PySpark. O objetivo consiste em avaliar eficiência em tempo de execução e o consumo máximo de memória RAM em ambientes de hardware com recursos limitados. A avaliação foi delimitada por um planejamento fatorial completo utilizando três tamanhos de conjuntos de dados (256MB, 512MB e 1GB) e quatro operações analíticas fundamentais: filtragem, agregação, junção e ordenação. Para garantir a estabilidade das medições e a integridade do isolamento de recursos, cada teste foi executado de forma estanque por meio de subprocessos individuais, antecedidos por uma etapa de aquecimento (warmup). Os resultados indicam trade-offs significativos entre as ferramentas: o Pandas exibe simplicidade mas baixa escalabilidade e alto risco de falha por falta de memória (OOM); o Polars e o DuckDB destacam-se pela alta eficiência de processamento e gerenciamento otimizado de recursos; enquanto o PySpark, embora robusto, impõe um overhead considerável de inicialização em ambientes restritos.
-\end{resumo}
+
 
 \section{Introdução}
 
@@ -59,9 +65,9 @@ Esta seção apresenta uma visão geral das quatro bibliotecas avaliadas neste e
 
 \subsection{Pandas}
 
-O Pandas é uma das principais bibliotecas de código aberto para manipulação e análise de dados estruturados em Python, amplamente reconhecida pela simplicidade de suas estruturas de \textit{Series} e \textit{DataFrame} e suporte a diversos formatos de arquivos~\cite{mckinney:2012, wikipedia:2025}. 
+O Pandas é uma das principais bibliotecas de código aberto para manipulação e análise de dados estruturados em Python, amplamente reconhecida pela simplicidade de suas estruturas de \textit{Series} e \textit{DataFrame} e suporte a diversos formatos de arquivos~\cite{mckinney:2012, pandas:docs}. 
 
-Apesar de sua popularidade e maturidade, a biblioteca apresenta limitações significativas em cenários com grandes volumes de dados ou recursos computacionais restritos, decorrentes de seu modelo de processamento majoritariamente em memória (\textit{in-memory}) e sem paralelismo nativo~\cite{wikipedia:2025}. Ainda assim, sua estabilidade e ampla compatibilidade com o ecossistema Python a consolidam como uma referência indispensável para estudos comparativos de desempenho.
+Apesar de sua popularidade e maturidade, a biblioteca apresenta limitações significativas em cenários com grandes volumes de dados ou recursos computacionais restritos, decorrentes de seu modelo de processamento majoritariamente em memória (\textit{in-memory}) e sem paralelismo nativo~\cite{pandas:docs}. Ainda assim, sua estabilidade e ampla compatibilidade com o ecossistema Python a consolidam como uma referência indispensável para estudos comparativos de desempenho.
 
 
 \subsection{Polars}

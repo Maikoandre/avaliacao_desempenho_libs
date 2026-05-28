@@ -673,11 +673,18 @@ FUNCTION {mastersthesis}
 
 FUNCTION {misc}
 { output.bibitem
-  format.authors output
-  author format.key output				% special for
-  output.year.check					% apalike
-  new.block
-  format.title output
+  author empty$
+    {
+      format.title output
+    }
+    {
+      format.authors output
+      author format.key output
+      output.year.check
+      new.block
+      format.title output
+    }
+  if$
   new.block
   howpublished output
   new.block
@@ -902,7 +909,7 @@ FUNCTION {calc.label}
       if$
     }
   if$
-  " "							% these three lines are
+  ", "							% these three lines are
   *							% for apalike, which
   year field.or.null purify$ #-1 #4 substring$		% uses all four digits
   *
