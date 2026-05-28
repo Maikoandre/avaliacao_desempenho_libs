@@ -1,4 +1,4 @@
-# Avaliação de Desempenho de Bibliotecas
+# Avaliação de Desempenho de Bibliotecas de Processamento de Dados em Ambiente com Recursos Limitados
 
 Este projeto tem como objetivo realizar a avaliação e comparação de desempenho de diferentes bibliotecas de processamento e manipulação de dados em Python, como **Pandas**, **Polars**, **DuckDB** e **Apache Spark**, em um ambiente com recursos computacionais limitados.
 
