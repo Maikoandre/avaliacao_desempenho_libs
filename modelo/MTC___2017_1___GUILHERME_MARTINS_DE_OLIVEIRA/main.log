@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.18)  28 MAY 2026 21:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.18)  30 MAY 2026 11:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -121,33 +121,62 @@ Language: portuges 2026/01/24 v1.2u Portuguese support from the babel system
 Package babel Info: Hyphen rules for 'brazilian' set to \l@portuguese
 (babel)             (\language3). Reported on input line 100.
 Package babel Info: Making " an active character on input line 132.
-))
-LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 27.
+)) (/usr/share/texmf-dist/tex/latex/microtype/microtype.sty
+Package: microtype 2026/03/01 v3.2d Micro-typographical refinements (RS)
+ (/usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count290
+)
+\MT@toks=\toks24
+\MT@tempbox=\box56
+\MT@count=\count291
+LaTeX Info: Redefining \noprotrusionifhmode on input line 1084.
+LaTeX Info: Redefining \leftprotrusion on input line 1085.
+\MT@prot@toks=\toks25
+LaTeX Info: Redefining \rightprotrusion on input line 1104.
+LaTeX Info: Redefining \textls on input line 1449.
+\MT@outer@kern=\dimen169
+LaTeX Info: Redefining \microtypecontext on input line 2053.
+LaTeX Info: Redefining \textmicrotypecontext on input line 2070.
+\MT@listname@count=\count292
+ (/usr/share/texmf-dist/tex/latex/microtype/microtype-pdftex.def
+File: microtype-pdftex.def 2026/03/01 v3.2d Definitions specific to pdftex (RS)
+LaTeX Info: Redefining \lsstyle on input line 944.
+LaTeX Info: Redefining \lslig on input line 944.
+\MT@outer@space=\skip53
+)
+Package microtype Info: Loading configuration file microtype.cfg.
+ (/usr/share/texmf-dist/tex/latex/microtype/microtype.cfg
+File: microtype.cfg 2026/03/01 v3.2d microtype main configuration file (RS)
+)
+LaTeX Info: Redefining \microtypesetup on input line 3065.
+)
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 36.
  (/usr/share/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 ) (/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count290
+\l__color_backend_stack_int=\count293
 ) (./main.aux
 Package babel Info: 'brazilian' activates 'portuges' shorthands.
 (babel)             Reported on input line 7.
 )
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -185,119 +214,100 @@ LaTeX Font Info:    ... okay on input line 27.
 
 (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count291
-\scratchdimen=\dimen169
-\scratchbox=\box56
-\nofMPsegments=\count292
-\nofMParguments=\count293
-\everyMPshowfont=\toks24
-\MPscratchCnt=\count294
-\MPscratchDim=\dimen170
-\MPnumerator=\count295
-\makeMPintoPDFobject=\count296
-\everyMPtoPDFconversion=\toks25
+\scratchcounter=\count294
+\scratchdimen=\dimen170
+\scratchbox=\box57
+\nofMPsegments=\count295
+\nofMParguments=\count296
+\everyMPshowfont=\toks26
+\MPscratchCnt=\count297
+\MPscratchDim=\dimen171
+\MPnumerator=\count298
+\makeMPintoPDFobject=\count299
+\everyMPtoPDFconversion=\toks27
 ) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
- (/usr/share/texmf-dist/tex/generic/infwarerr/infwarerr.sty
-Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
-) (/usr/share/texmf-dist/tex/latex/grfext/grfext.sty
-Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
- (/usr/share/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
-Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
-)) (/usr/share/texmf-dist/tex/latex/kvoptions/kvoptions.sty
-Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
- (/usr/share/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
-Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
-) (/usr/share/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
-Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
-)) (/usr/share/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
-Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
-)
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
-Package grfext Info: Graphics extension search list:
-(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 504.
  (/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
+LaTeX Info: Redefining \microtypecontext on input line 36.
+Package microtype Info: Applying patch `item' on input line 36.
+Package microtype Info: Applying patch `toc' on input line 36.
+Package microtype Info: Applying patch `eqnum' on input line 36.
+Package microtype Info: Applying patch `footnote' on input line 36.
+Package microtype Info: Applying patch `verbatim' on input line 36.
+LaTeX Info: Redefining \microtypesetup on input line 36.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using default protrusion set `alltext'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `alltext-nott'.
+Package microtype Info: Patching command `\showhyphens'.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+ (/usr/share/texmf-dist/tex/latex/microtype/mt-ptm.cfg
+File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
+) (/usr/share/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
+)
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 29.
+(Font)              <12> on input line 38.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 29.
+(Font)              <8> on input line 38.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 29.
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 29.
+(Font)              <6> on input line 38.
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 38.
  (/usr/share/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-LaTeX Font Info:    Trying to load font information for OMS+pcr on input line 29.
+LaTeX Font Info:    Trying to load font information for OMS+pcr on input line 38.
  (/usr/share/texmf-dist/tex/latex/psnfss/omspcr.fd
 File: omspcr.fd 
 )
 LaTeX Font Info:    Font shape `OMS/pcr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 29.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 38.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}]
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 57.
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 110.
  (/usr/share/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-) [2]
-Underfull \hbox (badness 4765) in paragraph at lines 80--81
-\OT1/ptm/m/n/12 sem-pe-nho ([],
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 82--83
-[]\OT1/ptm/m/n/12 Empregando ar-ma-ze-na-mento co-lu-nar, execu[][]ao ve-to-ri-zada e su-porte
- []
-
-
-Underfull \hbox (badness 5403) in paragraph at lines 82--83
-\OT1/ptm/m/n/12 na-tivo a for-ma-tos como CSV, Par-quet e Apa-che Ar-row, a fer-ra-menta ofe-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 82--83
-\OT1/ptm/m/n/12 rece alta efici[]encia em opera[][]oes anal[]^^Pticas como agrega[][]oes, fil-tros e
- []
-
-[3] [4]
+) [2] [3] [4]
 <assets/escalabilidade_tempo.pdf, id=22, 918.732pt x 640.05524pt>
 File: assets/escalabilidade_tempo.pdf Graphic file (type pdf)
 <use assets/escalabilidade_tempo.pdf>
-Package pdftex.def Info: assets/escalabilidade_tempo.pdf  used on input line 127.
+Package pdftex.def Info: assets/escalabilidade_tempo.pdf  used on input line 246.
 (pdftex.def)             Requested size: 341.43437pt x 237.86174pt.
-LaTeX Font Info:    Trying to load font information for OT1+phv on input line 128.
+LaTeX Font Info:    Trying to load font information for OT1+phv on input line 247.
  (/usr/share/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2020/03/25 scalable font definitions for OT1/phv.
-) [5 <./assets/escalabilidade_tempo.pdf>]
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `phv' (encoding: OT1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+ [5 <./assets/escalabilidade_tempo.pdf>]
 <assets/consumo_ram_1gb.pdf, id=120, 711.88702pt x 423.47202pt>
 File: assets/consumo_ram_1gb.pdf Graphic file (type pdf)
 <use assets/consumo_ram_1gb.pdf>
-Package pdftex.def Info: assets/consumo_ram_1gb.pdf  used on input line 143.
+Package pdftex.def Info: assets/consumo_ram_1gb.pdf  used on input line 277.
 (pdftex.def)             Requested size: 341.43437pt x 203.1027pt.
  [6 <./assets/consumo_ram_1gb.pdf>]
 <assets/estabilidade_tempo.pdf, id=215, 640.46602pt x 423.52972pt>
 File: assets/estabilidade_tempo.pdf Graphic file (type pdf)
 <use assets/estabilidade_tempo.pdf>
-Package pdftex.def Info: assets/estabilidade_tempo.pdf  used on input line 157.
+Package pdftex.def Info: assets/estabilidade_tempo.pdf  used on input line 300.
 (pdftex.def)             Requested size: 298.75264pt x 197.56615pt.
  [7 <./assets/estabilidade_tempo.pdf>] (./main.bbl
-LaTeX Font Info:    Trying to load font information for OML+ptm on input line 25.
+LaTeX Font Info:    Trying to load font information for OML+ptm on input line 12.
  (/usr/share/texmf-dist/tex/latex/psnfss/omlptm.fd
 File: omlptm.fd 
 )
 LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <12> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 25.
-
-Underfull \hbox (badness 2469) in paragraph at lines 36--38
-[]\OT1/ptm/m/n/12 Pandas do-cu-men-ta-tion.  Dis-pon[]^^Pvel em: \OML/cmm/m/it/12 <$\OT1/pcr/m/n/12 https : / / pandas . pydata . org /
- []
-
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 12.
 ) [8
 
 ] (./main.aux)
@@ -307,18 +317,18 @@ L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4454 strings out of 469495
- 74364 string characters out of 5470098
- 502484 words of memory out of 5000000
- 33034 multiletter control sequences out of 15000+600000
- 645943 words of font info for 73 fonts, out of 8000000 for 9000
+ 6536 strings out of 469495
+ 105546 string characters out of 5470098
+ 568626 words of memory out of 5000000
+ 34886 multiletter control sequences out of 15000+600000
+ 656313 words of font info for 221 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 72i,10n,79p,1312b,370s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,10n,79p,1100b,419s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (8 pages, 223834 bytes).
+Output written on main.pdf (8 pages, 227656 bytes).
 PDF statistics:
  345 PDF objects out of 1000 (max. 8388607)
  81 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 43536 words of extra memory for PDF output out of 51595 (max. 10000000)
 
