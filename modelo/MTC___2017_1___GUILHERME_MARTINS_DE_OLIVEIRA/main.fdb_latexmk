@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex main"] 1780005312.89521 "main.aux" "main.bbl" "main" 1780005313.48536 0
-  "./sbc-template.bib" 1779534935.99737 2477 9db949cd6ed1c3765a6cd6abfc78708a ""
-  "./sbc.bst" 1779397348 21863 e2f961827e28074ef5a2bc27ccb7b310 ""
-  "main.aux" 1780005313.29877 3803 82937848b10e5727f1594c4f8333ea87 "pdflatex"
+["bibtex main"] 1780014227.33429 "main.aux" "main.bbl" "main" 1780014228.8186 0
+  "./sbc-template.bib" 1780006278.25639 2627 794500cb82e915ac7d1fdb0991f62884 ""
+  "./sbc.bst" 1780005867.55911 21925 e7f5e656183e7f01fa9578145132b6b0 ""
+  "main.aux" 1780014228.55282 3955 6ab928c0139548f888a45319b33a87f4 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1780005312.95876 "/home/maiko/Projects/avaliacao_desempenho_libs/modelo/MTC___2017_1___GUILHERME_MARTINS_DE_OLIVEIRA/main.tex" "main.pdf" "main" 1780005313.48553 0
-  "/home/maiko/Projects/avaliacao_desempenho_libs/modelo/MTC___2017_1___GUILHERME_MARTINS_DE_OLIVEIRA/main.tex" 1780005312.04477 19788 d3588a8c775dcfb16a729bfd091ca83c ""
+["pdflatex"] 1780014227.49216 "/home/maiko/Projects/avaliacao_desempenho_libs/modelo/MTC___2017_1___GUILHERME_MARTINS_DE_OLIVEIRA/main.tex" "main.pdf" "main" 1780014228.81912 0
+  "/home/maiko/Projects/avaliacao_desempenho_libs/modelo/MTC___2017_1___GUILHERME_MARTINS_DE_OLIVEIRA/main.tex" 1780006284.48535 19852 1065cd587ec3442015092e3cc8b25d00 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc" 1775415801 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1775415801 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm" 1775415801 960 379cc0019370a9e0208a0a3f949f847a ""
@@ -81,6 +81,7 @@
   "/usr/share/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty" 1775415801 13815 760b0c02f691ea230f5359c4e1de23a7 ""
   "/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def" 1775415801 30662 bfd6e864f4ffc5018b0e2b6260c3181c ""
   "/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg" 1775415801 678 4792914a8f45be57bb98413425e4c7af ""
+  "/usr/share/texmf-dist/tex/latex/psnfss/omlptm.fd" 1775415801 577 008ea4bacb8ccf8c2a39dc94e000ef1f ""
   "/usr/share/texmf-dist/tex/latex/psnfss/omspcr.fd" 1775415801 576 907c194ce74186f4e40247f2ba1986cf ""
   "/usr/share/texmf-dist/tex/latex/psnfss/ot1pcr.fd" 1775415801 985 1ed784d7bfe47179f3550d2303b073f8 ""
   "/usr/share/texmf-dist/tex/latex/psnfss/ot1phv.fd" 1775415801 1679 51f99a09d5536398d3a0ad1d44df9625 ""
@@ -96,10 +97,10 @@
   "assets/escalabilidade_tempo.pdf" 1779668464.15616 32966 825d1207e9994614f4f8b7bdaf17d3a0 ""
   "assets/estabilidade_tempo.pdf" 1779668464.15616 26464 dc81c42b9a668f21fe3495c432d18e4f ""
   "caption2.sty" 1779397348 15189 50845fba222dc25666abc3397b231fab ""
-  "main.aux" 1780005313.29877 3803 82937848b10e5727f1594c4f8333ea87 "pdflatex"
-  "main.bbl" 1780005312.95477 2116 c7cf03b2f7371874713e3eb05c0f9d52 "bibtex main"
-  "main.tex" 1780005312.04477 19788 d3588a8c775dcfb16a729bfd091ca83c ""
-  "sbc-template.sty" 1779397348 5280 0a277450ee6cfc82a68e4b0b0f92e15e ""
+  "main.aux" 1780014228.55282 3955 6ab928c0139548f888a45319b33a87f4 "pdflatex"
+  "main.bbl" 1780014227.47358 2313 6c60c12b3b63081a0e4cc8df3624a6ec "bibtex main"
+  "main.tex" 1780006284.48535 19852 1065cd587ec3442015092e3cc8b25d00 ""
+  "sbc-template.sty" 1780006137.83832 5141 4bab3aa3a4d699f94aafa22309cce7b5 ""
   (generated)
   "main.aux"
   "main.log"

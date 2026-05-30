@@ -2,34 +2,25 @@
 
 \bibitem[Cirillo and Galante, 2025]{cirillo:2025}
 Cirillo, G. and Galante, G. (2025).
-\newblock Proposta de compara{\c{c}}{\~a}o da efici{\^e}ncia e escalabilidade
-  de bibliotecas python para manipula{\c{c}}{\~a}o e an{\'a}lise de dados.
-\newblock In {\em Anais da XXV Escola Regional de Alto Desempenho da Regi{\~a}o
-  Sul}, pages 133--134, Porto Alegre, RS, Brasil. SBC.
+\newblock Proposta de compara{\c{c}}{\~a}o da efici{\^e}ncia e escalabilidade de bibliotecas python para manipula{\c{c}}{\~a}o e an{\'a}lise de dados.
+\newblock In {\em Anais da XXV Escola Regional de Alto Desempenho da Regi{\~a}o Sul}, pages 133--134, Porto Alegre, RS, Brasil. SBC.
 
 \bibitem[McKinney, 2012]{mckinney:2012}
 McKinney, W. (2012).
-\newblock {\em Python for Data Analysis: Data Wrangling with Pandas, NumPy, and
-  IPython}.
+\newblock {\em Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython}.
 \newblock O'Reilly Media.
 
 \bibitem[Moutinho et~al., 2024]{moutinho:2024}
-Moutinho, S. O.~M., Martins, P. G.~M., Alencar, D.~F., and Coneglian, C.~S.
-  (2024).
-\newblock Ci{\^e}ncia da informa{\c{c}}{\~a}o e ci{\^e}ncia de dados:
-  converg{\^e}ncias interdisciplinares.
-\newblock {\em Encontros Bibli: revista de biblioteconomia e ci{\^e}ncia da
-  informa{\c{c}}{\~a}o}, 29:e99127.
+Moutinho, S. O.~M., Martins, P. G.~M., Alencar, D.~F., and Coneglian, C.~S. (2024).
+\newblock Ci{\^e}ncia da informa{\c{c}}{\~a}o e ci{\^e}ncia de dados: converg{\^e}ncias interdisciplinares.
+\newblock {\em Encontros Bibli: revista de biblioteconomia e ci{\^e}ncia da informa{\c{c}}{\~a}o}, 29:e99127.
 
 \bibitem[Ourique, 2024]{ourique:2024}
 Ourique, J. P.~J. (2024).
-\newblock An{\'a}lise experimental do desempenho de bibliotecas de ci{\^e}ncia
-  de dados em workflows com alto custo computacional.
-\newblock Trabalho de conclus{\~a}o de curso (gradua{\c{c}}{\~a}o),
-  Universidade Federal do Rio Grande do Sul, Porto Alegre.
+\newblock An{\'a}lise experimental do desempenho de bibliotecas de ci{\^e}ncia de dados em workflows com alto custo computacional.
+\newblock Trabalho de conclus{\~a}o de curso (gradua{\c{c}}{\~a}o), Universidade Federal do Rio Grande do Sul, Porto Alegre.
 
-\bibitem[“DuckDB: An in-process SQL OLAP database management system”,
-  2026]{duckdb:2026a}
+\bibitem[“DuckDB: An in-process SQL OLAP database management system”, 2026]{duckdb:2026a}
 {DuckDB: An in-process SQL OLAP database management system}.
 \newblock Disponível em: \textless\url{https://duckdb.org/}\textgreater.
 
@@ -43,8 +34,7 @@ Ourique, J. P.~J. (2024).
 
 \bibitem[“Pandas documentation”, 2025]{pandas:docs}
 {Pandas documentation}.
-\newblock Disponível em:
-  \textless\url{https://pandas.pydata.org/docs/}\textgreater.
+\newblock Disponível em: \textless\url{https://pandas.pydata.org/docs/}\textgreater.
 
 \bibitem[“Vectorized Execution Engine”, 2026]{duckdb:ai2026}
 {Vectorized Execution Engine}.
