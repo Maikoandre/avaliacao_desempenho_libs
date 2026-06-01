@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.18)  30 MAY 2026 11:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.18)  1 JUN 2026 05:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -296,7 +296,7 @@ File: assets/consumo_ram_1gb.pdf Graphic file (type pdf)
 Package pdftex.def Info: assets/consumo_ram_1gb.pdf  used on input line 277.
 (pdftex.def)             Requested size: 341.43437pt x 203.1027pt.
  [6 <./assets/consumo_ram_1gb.pdf>]
-<assets/estabilidade_tempo.pdf, id=215, 640.46602pt x 423.52972pt>
+<assets/estabilidade_tempo.pdf, id=211, 640.46602pt x 423.52972pt>
 File: assets/estabilidade_tempo.pdf Graphic file (type pdf)
 <use assets/estabilidade_tempo.pdf>
 Package pdftex.def Info: assets/estabilidade_tempo.pdf  used on input line 300.
@@ -325,9 +325,9 @@ Here is how much of TeX's memory you used:
  16 hyphenation exceptions out of 8191
  72i,10n,79p,1100b,419s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (8 pages, 227656 bytes).
+Output written on main.pdf (8 pages, 225235 bytes).
 PDF statistics:
- 345 PDF objects out of 1000 (max. 8388607)
+ 337 PDF objects out of 1000 (max. 8388607)
  81 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  43536 words of extra memory for PDF output out of 51595 (max. 10000000)

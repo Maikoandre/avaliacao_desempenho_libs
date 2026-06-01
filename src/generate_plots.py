@@ -66,36 +66,43 @@ g.savefig(os.path.join(assets_dir, "escalabilidade_tempo.png"))
 g.savefig(os.path.join(assets_dir, "escalabilidade_tempo.pdf"))
 plt.close()
 
-# GRÁFICO 2: Pico de Memória RAM (Dataset 1024MB) com IC 95%
+# GRÁFICO 2: Pico de Memória RAM (Datasets 256MB, 512MB e 1024MB) com IC 95%
 print("Gerando Gráfico 2: Pico de RAM...")
-df_ram_1gb = data[
-    (data["dataset_size"] == "1024MB") &
-    (data["status"] == "SUCCESS") &
-    (data["operation"].isin(op_pures))
-].copy()
-df_ram_1gb["operation_pt"] = df_ram_1gb["operation"].map(op_map)
-df_ram_1gb["library"] = df_ram_1gb["library"].str.capitalize()
+datasets_to_plot = [
+    ("256MB", "256mb"),
+    ("512MB", "512mb"),
+    ("1024MB", "1gb")
+]
 
-plt.figure(figsize=(10, 6))
-ax = sns.barplot(
-    data=df_ram_1gb,
-    x="operation_pt",
-    y="mem_mb",
-    hue="library",
-    errorbar=("ci", 95),
-    capsize=0.08,
-    palette="viridis"
-)
+for size_label, file_suffix in datasets_to_plot:
+    df_ram = data[
+        (data["dataset_size"] == size_label) &
+        (data["status"] == "SUCCESS") &
+        (data["operation"].isin(op_pures))
+    ].copy()
+    df_ram["operation_pt"] = df_ram["operation"].map(op_map)
+    df_ram["library"] = df_ram["library"].str.capitalize()
 
-plt.title("Consumo de RAM Pico (MB) por Operação - Dataset 1024MB (IC 95%)", fontsize=13, fontweight="bold")
-plt.xlabel("Operação Analítica", fontsize=11)
-plt.ylabel("Consumo Máximo de RAM (MB)", fontsize=11)
-plt.legend(title="Biblioteca")
-plt.tight_layout()
+    plt.figure(figsize=(10, 6))
+    ax = sns.barplot(
+        data=df_ram,
+        x="operation_pt",
+        y="mem_mb",
+        hue="library",
+        errorbar=("ci", 95),
+        capsize=0.08,
+        palette="viridis"
+    )
 
-plt.savefig(os.path.join(assets_dir, "consumo_ram_1gb.png"))
-plt.savefig(os.path.join(assets_dir, "consumo_ram_1gb.pdf"))
-plt.close()
+    plt.title(f"Consumo de RAM Pico (MB) por Operação - Dataset {size_label}", fontsize=13, fontweight="bold")
+    plt.xlabel("Operação Analítica", fontsize=11)
+    plt.ylabel("Consumo Máximo de RAM (MB)", fontsize=11)
+    plt.legend(title="Biblioteca")
+    plt.tight_layout()
+
+    plt.savefig(os.path.join(assets_dir, f"consumo_ram_{file_suffix}.png"))
+    plt.savefig(os.path.join(assets_dir, f"consumo_ram_{file_suffix}.pdf"))
+    plt.close()
 
 # GRÁFICO 3: Boxplot de Estabilidade/Dispersão (Tempo no Dataset 1024MB)
 print("Gerando Gráfico 3: Boxplot de Estabilidade...")
@@ -115,7 +122,7 @@ sns.boxplot(
 )
 
 plt.yscale("log")
-plt.title("Distribuição do Tempo de Execução - Dataset 1024MB (Log)", fontsize=13, fontweight="bold")
+plt.title("Distribuição do Tempo de Execução - Dataset 1024MB", fontsize=13, fontweight="bold")
 plt.xlabel("Biblioteca", fontsize=11)
 plt.ylabel("Tempo de Execução (s)", fontsize=11)
 plt.tight_layout()

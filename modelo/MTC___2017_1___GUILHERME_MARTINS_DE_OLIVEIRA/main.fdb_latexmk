@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1780152040.11213 "main.aux" "main.bbl" "main" 1780152052.83397 0
+["bibtex main"] 1780152040.11213 "main.aux" "main.bbl" "main" 1780302626.74824 0
   "./sbc-template.bib" 1780151592.96794 2463 25d21e3de0868277d145fced27226ba8 ""
   "./sbc.bst" 1780005867.55911 21925 e7f5e656183e7f01fa9578145132b6b0 ""
-  "main.aux" 1780152052.67102 3794 58af11fccb7a34e2aefb6287763e1d99 "pdflatex"
+  "main.aux" 1780302626.58556 3794 58af11fccb7a34e2aefb6287763e1d99 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1780152052.2364 "/home/maiko/Projects/avaliacao_desempenho_libs/modelo/MTC___2017_1___GUILHERME_MARTINS_DE_OLIVEIRA/main.tex" "main.pdf" "main" 1780152052.83414 0
+["pdflatex"] 1780302626.19041 "/home/maiko/Projects/avaliacao_desempenho_libs/modelo/MTC___2017_1___GUILHERME_MARTINS_DE_OLIVEIRA/main.tex" "main.pdf" "main" 1780302626.74838 0
   "/home/maiko/Projects/avaliacao_desempenho_libs/modelo/MTC___2017_1___GUILHERME_MARTINS_DE_OLIVEIRA/main.tex" 1780152030.68108 20411 c19fdc932751273239c9b2f85a4a2885 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc" 1775415801 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1775415801 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -92,11 +92,11 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1775415801 43569 fd570f2fa160877d211e859f687312ba ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1779136463 5385779 47c0c393a77fd4a098bacfd57d66b88a ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1779136409 2329403 ccc8629b393885aa76ce583be5cdf44c ""
-  "assets/consumo_ram_1gb.pdf" 1779668464.15516 31793 5ce2e100d512fc332900a3228d780d63 ""
+  "assets/consumo_ram_1gb.pdf" 1780302600.58536 30282 da453e8b54cf7815c6913923a0d6f645 ""
   "assets/escalabilidade_tempo.pdf" 1779668464.15616 32966 825d1207e9994614f4f8b7bdaf17d3a0 ""
-  "assets/estabilidade_tempo.pdf" 1779668464.15616 26464 dc81c42b9a668f21fe3495c432d18e4f ""
+  "assets/estabilidade_tempo.pdf" 1780302620.83347 25282 787d62e900cbda372cdd1a327c2c317b ""
   "caption2.sty" 1779397348 15189 50845fba222dc25666abc3397b231fab ""
-  "main.aux" 1780152052.67102 3794 58af11fccb7a34e2aefb6287763e1d99 "pdflatex"
+  "main.aux" 1780302626.58556 3794 58af11fccb7a34e2aefb6287763e1d99 "pdflatex"
   "main.bbl" 1780152040.18271 2170 44e373f81107bb24c01ad254afc73cc3 "bibtex main"
   "main.tex" 1780152030.68108 20411 c19fdc932751273239c9b2f85a4a2885 ""
   "sbc-template.sty" 1780006137.83832 5141 4bab3aa3a4d699f94aafa22309cce7b5 ""
