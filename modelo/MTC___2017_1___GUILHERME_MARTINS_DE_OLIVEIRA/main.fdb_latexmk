@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex main"] 1780911750.08747 "main.aux" "main.bbl" "main" 1780911799.52786 0
+["bibtex main"] 1780911750.08747 "main.aux" "main.bbl" "main" 1780911911.33525 0
   "./sbc-template.bib" 1780151592.96794 2463 25d21e3de0868277d145fced27226ba8 ""
   "./sbc.bst" 1780005867.55911 21925 e7f5e656183e7f01fa9578145132b6b0 ""
-  "main.aux" 1780911799.275 4414 62379b01be1e499dcc8c97427a1cf438 "pdflatex"
+  "main.aux" 1780911911.01196 4414 62379b01be1e499dcc8c97427a1cf438 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1780911798.46372 "/home/maiko/Projects/avaliacao_desempenho_libs/modelo/MTC___2017_1___GUILHERME_MARTINS_DE_OLIVEIRA/main.tex" "main.pdf" "main" 1780911799.52801 0
-  "/home/maiko/Projects/avaliacao_desempenho_libs/modelo/MTC___2017_1___GUILHERME_MARTINS_DE_OLIVEIRA/main.tex" 1780911798.069 22863 c535bfb76c6d2acc3566a66adf9044fa ""
+["pdflatex"] 1780911910.4323 "/home/maiko/Projects/avaliacao_desempenho_libs/modelo/MTC___2017_1___GUILHERME_MARTINS_DE_OLIVEIRA/main.tex" "main.pdf" "main" 1780911911.33601 0
+  "/home/maiko/Projects/avaliacao_desempenho_libs/modelo/MTC___2017_1___GUILHERME_MARTINS_DE_OLIVEIRA/main.tex" 1780911910.14706 22846 9ed5b13f38adf3ebf074b13d2a55925f ""
   "/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1775415801 2375 baa924870cfb487815765f9094cf3728 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc" 1775415801 2405 5dcf2c1b967ee25cc46c58cd52244aed ""
   "/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc" 1775415801 2840 216e6e45ad352e2456e1149f28885bee ""
@@ -99,9 +99,9 @@
   "assets/escalabilidade_tempo.pdf" 1779668464.15616 32966 825d1207e9994614f4f8b7bdaf17d3a0 ""
   "assets/estabilidade_tempo.pdf" 1780302620.83347 25282 787d62e900cbda372cdd1a327c2c317b ""
   "caption2.sty" 1779397348 15189 50845fba222dc25666abc3397b231fab ""
-  "main.aux" 1780911799.275 4414 62379b01be1e499dcc8c97427a1cf438 "pdflatex"
+  "main.aux" 1780911911.01196 4414 62379b01be1e499dcc8c97427a1cf438 "pdflatex"
   "main.bbl" 1780911750.19404 2152 fb0537cc37a83ca8624cc4be1bcd36c7 "bibtex main"
-  "main.tex" 1780911798.069 22863 c535bfb76c6d2acc3566a66adf9044fa ""
+  "main.tex" 1780911910.14706 22846 9ed5b13f38adf3ebf074b13d2a55925f ""
   "sbc-template.sty" 1780006137.83832 5141 4bab3aa3a4d699f94aafa22309cce7b5 ""
   (generated)
   "main.aux"
