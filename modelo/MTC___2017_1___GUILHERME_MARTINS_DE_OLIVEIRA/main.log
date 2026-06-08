@@ -1,9 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.18)  8 JUN 2026 06:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.18)  8 JUN 2026 06:43
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
-**main.tex
-(./main.tex
+**/home/maiko/Projects/avaliacao_desempenho_libs/modelo/MTC___2017_1___GUILHERME_MARTINS_DE_OLIVEIRA/main.tex
+(/home/maiko/Projects/avaliacao_desempenho_libs/modelo/MTC___2017_1___GUILHERME_MARTINS_DE_OLIVEIRA/main.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
 (/usr/share/texmf-dist/tex/latex/base/article.cls
@@ -22,28 +23,22 @@ File: size12.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip49
 \belowcaptionskip=\skip50
 \bibindent=\dimen148
-)
-(/usr/share/texmf-dist/tex/latex/base/fontenc.sty
+) (/usr/share/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
-)
-(/usr/share/texmf-dist/tex/latex/base/inputenc.sty
+) (/usr/share/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2024/02/08 v1.3d Input encoding file
 \inpenc@prehook=\toks17
 \inpenc@posthook=\toks18
 ) (./sbc-template.sty
 Package: sbc-template 2001/06/09
-
-(/usr/share/texmf-dist/tex/latex/geometry/geometry.sty
+ (/usr/share/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
-
-(/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
+ (/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \KV@toks@=\toks19
-)
-(/usr/share/texmf-dist/tex/generic/iftex/ifvtex.sty
+) (/usr/share/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
-
-(/usr/share/texmf-dist/tex/generic/iftex/iftex.sty
+ (/usr/share/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2024/12/12 v1.0g TeX engine tests
 ))
 \Gm@cnth=\count283
@@ -63,16 +58,13 @@ Package: caption2 2002/08/03 v2.1 Customising captions (AS)
 \captionmargin=\dimen157
 \captionwidth=\dimen158
 \captionindent=\dimen159
-Package caption2 Info: Running in caption2 v2.0 compatibility mode on input lin
-e 147.
+Package caption2 Info: Running in caption2 v2.0 compatibility mode on input line 147.
 \captionlinewidth=\dimen160
-)
-(/usr/share/texmf-dist/tex/latex/psnfss/times.sty
+) (/usr/share/texmf-dist/tex/latex/psnfss/times.sty
 Package: times 2020/03/25 PSNFSS-v9.3 (SPQR) 
 )
 \c@instn=\count286
-
-(/usr/share/texmf-dist/tex/latex/titlesec/titlesec.sty
+ (/usr/share/texmf-dist/tex/latex/titlesec/titlesec.sty
 Package: titlesec 2025/01/04 v2.17 Sectioning titles
 \ttl@box=\box53
 \beforetitleunit=\skip51
@@ -83,78 +75,57 @@ Package: titlesec 2025/01/04 v2.17 Sectioning titles
 \titlewidth=\dimen163
 \titlewidthlast=\dimen164
 \titlewidthfirst=\dimen165
-))
-(/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
+)) (/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
-
-(/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
+ (/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
-
-(/usr/share/texmf-dist/tex/latex/graphics/trig.sty
+ (/usr/share/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
-)
-(/usr/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+) (/usr/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 106.
-
-(/usr/share/texmf-dist/tex/latex/graphics-def/pdftex.def
+ (/usr/share/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen166
 \Gin@req@width=\dimen167
-)
-(/usr/share/texmf-dist/tex/latex/url/url.sty
+) (/usr/share/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
-)
-(/usr/share/texmf-dist/tex/latex/float/float.sty
+) (/usr/share/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count287
 \float@exts=\toks22
 \float@box=\box54
 \@float@everytoks=\toks23
 \@floatcapt=\box55
-)
-(/usr/share/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2026/02/14 v26.3 The multilingual framework for LuaLaTeX, pdfLaT
-eX and XeLaTeX
+) (/usr/share/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2026/02/14 v26.3 The multilingual framework for LuaLaTeX, pdfLaTeX and XeLaTeX
 \babel@savecnt=\count288
-LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input li
-ne 2078.
-LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input li
-ne 2080.
-LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input lin
-e 2082.
-LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input lin
-e 2083.
-LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) 
-on input line 2084.
-LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) 
-on input line 2086.
-LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) 
-on input line 2111.
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input line 2078.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input line 2080.
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input line 2082.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input line 2083.
+LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) on input line 2084.
+LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) on input line 2086.
+LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) on input line 2111.
 \U@D=\dimen168
 \l@unhyphenated=\language4
-
-(/usr/share/texmf-dist/tex/generic/babel/txtbabel.def)
+ (/usr/share/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read2
 \bbl@dirlevel=\count289
-
-(/usr/share/texmf-dist/tex/generic/babel/locale/pt/babel-brazilian.tex)
+ (/usr/share/texmf-dist/tex/generic/babel/locale/pt/babel-brazilian.tex)
 Package babel Info: Importing font and identification data for brazilian
 (babel)             from babel-pt-BR.ini. Reported on input line 4330.
-
-(/usr/share/texmf-dist/tex/generic/babel-portuges/brazilian.ldf
+ (/usr/share/texmf-dist/tex/generic/babel-portuges/brazilian.ldf
 Language: portuges 2026/01/24 v1.2u Portuguese support from the babel system
 Package babel Info: Hyphen rules for 'brazilian' set to \l@portuguese
 (babel)             (\language3). Reported on input line 100.
 Package babel Info: Making " an active character on input line 132.
-))
-(/usr/share/texmf-dist/tex/latex/microtype/microtype.sty
+)) (/usr/share/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2026/03/01 v3.2d Micro-typographical refinements (RS)
-
-(/usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+ (/usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count290
 )
@@ -170,22 +141,18 @@ LaTeX Info: Redefining \textls on input line 1449.
 LaTeX Info: Redefining \microtypecontext on input line 2053.
 LaTeX Info: Redefining \textmicrotypecontext on input line 2070.
 \MT@listname@count=\count292
-
-(/usr/share/texmf-dist/tex/latex/microtype/microtype-pdftex.def
+ (/usr/share/texmf-dist/tex/latex/microtype/microtype-pdftex.def
 File: microtype-pdftex.def 2026/03/01 v3.2d Definitions specific to pdftex (RS)
-
 LaTeX Info: Redefining \lsstyle on input line 944.
 LaTeX Info: Redefining \lslig on input line 944.
 \MT@outer@space=\skip53
 )
 Package microtype Info: Loading configuration file microtype.cfg.
-
-(/usr/share/texmf-dist/tex/latex/microtype/microtype.cfg
+ (/usr/share/texmf-dist/tex/latex/microtype/microtype.cfg
 File: microtype.cfg 2026/03/01 v3.2d microtype main configuration file (RS)
 )
 LaTeX Info: Redefining \microtypesetup on input line 3065.
-)
-(/usr/share/texmf-dist/tex/latex/lm/lmodern.sty
+) (/usr/share/texmf-dist/tex/latex/lm/lmodern.sty
 Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
@@ -220,13 +187,10 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
 )
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 39
-.
-
-(/usr/share/texmf-dist/tex/latex/lm/t1lmr.fd
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 39.
+ (/usr/share/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-(/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+) (/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count293
 ) (./main.aux
@@ -299,12 +263,9 @@ LaTeX Font Info:    ... okay on input line 39.
 \everyMPtoPDFconversion=\toks27
 ) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-85.
-
-(/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 LaTeX Info: Redefining \microtypecontext on input line 39.
 Package microtype Info: Applying patch `item' on input line 39.
@@ -323,33 +284,23 @@ Package microtype Info: Patching command `\showhyphens'.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
-
-(/usr/share/texmf-dist/tex/latex/microtype/mt-cmr.cfg
-File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
-(RS)
+ (/usr/share/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
 )
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 4
-1.
-
-(/usr/share/texmf-dist/tex/latex/lm/ot1lmr.fd
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 41.
+ (/usr/share/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 4
-1.
-
-(/usr/share/texmf-dist/tex/latex/lm/omllmm.fd
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 41.
+ (/usr/share/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-41.
-
-(/usr/share/texmf-dist/tex/latex/lm/omslmsy.fd
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 41.
+ (/usr/share/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-41.
-
-(/usr/share/texmf-dist/tex/latex/lm/omxlmex.fd
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 41.
+ (/usr/share/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -358,10 +309,8 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <8> on input line 41.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 41.
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 4
-1.
-
-(/usr/share/texmf-dist/tex/latex/lm/t1lmtt.fd
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 41.
+ (/usr/share/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 Package microtype Info: Loading generic protrusion settings for font family
@@ -370,82 +319,66 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fonts
-/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
-08.
-
-(/usr/share/texmf-dist/tex/latex/lm/ts1lmr.fd
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 91.
+ (/usr/share/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) [2{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}] [3] [4] [5]
 <assets/escalabilidade_tempo.pdf, id=26, 918.732pt x 640.05524pt>
 File: assets/escalabilidade_tempo.pdf Graphic file (type pdf)
 <use assets/escalabilidade_tempo.pdf>
-Package pdftex.def Info: assets/escalabilidade_tempo.pdf  used on input line 24
-8.
+Package pdftex.def Info: assets/escalabilidade_tempo.pdf  used on input line 232.
 (pdftex.def)             Requested size: 341.43437pt x 237.86174pt.
-LaTeX Font Info:    Trying to load font information for T1+lmss on input line 2
-49.
-
-(/usr/share/texmf-dist/tex/latex/lm/t1lmss.fd
+LaTeX Font Info:    Trying to load font information for T1+lmss on input line 233.
+ (/usr/share/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [6]
-<assets/consumo_ram_1gb.pdf, id=30, 711.88702pt x 423.47202pt>
+ [6{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc} <./assets/escalabilidade_tempo.pdf>]
+<assets/consumo_ram_1gb.pdf, id=128, 711.88702pt x 423.47202pt>
 File: assets/consumo_ram_1gb.pdf Graphic file (type pdf)
 <use assets/consumo_ram_1gb.pdf>
-Package pdftex.def Info: assets/consumo_ram_1gb.pdf  used on input line 279.
+Package pdftex.def Info: assets/consumo_ram_1gb.pdf  used on input line 264.
 (pdftex.def)             Requested size: 341.43437pt x 203.1027pt.
- [7{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf-di
-st/fonts/enc/dvips/lm/lm-mathit.enc} <./assets/escalabilidade_tempo.pdf>]
-<assets/consumo_ram_512mb.pdf, id=133, 711.88702pt x 423.47202pt>
+<assets/consumo_ram_512mb.pdf, id=129, 711.88702pt x 423.47202pt>
 File: assets/consumo_ram_512mb.pdf Graphic file (type pdf)
 <use assets/consumo_ram_512mb.pdf>
-Package pdftex.def Info: assets/consumo_ram_512mb.pdf  used on input line 298.
+Package pdftex.def Info: assets/consumo_ram_512mb.pdf  used on input line 283.
 (pdftex.def)             Requested size: 341.43437pt x 203.1027pt.
-<assets/consumo_ram_256mb.pdf, id=134, 711.88702pt x 423.47202pt>
+ [7 <./assets/consumo_ram_1gb.pdf>]
+<assets/consumo_ram_256mb.pdf, id=218, 711.88702pt x 423.47202pt>
 File: assets/consumo_ram_256mb.pdf Graphic file (type pdf)
 <use assets/consumo_ram_256mb.pdf>
-Package pdftex.def Info: assets/consumo_ram_256mb.pdf  used on input line 306.
+Package pdftex.def Info: assets/consumo_ram_256mb.pdf  used on input line 292.
 (pdftex.def)             Requested size: 341.43437pt x 203.1027pt.
- [8 <./assets/consumo_ram_1gb.pdf>]
-<assets/estabilidade_tempo.pdf, id=222, 640.46602pt x 423.52972pt>
+ [8 <./assets/consumo_ram_512mb.pdf> <./assets/consumo_ram_256mb.pdf>]
+<assets/estabilidade_tempo.pdf, id=381, 640.46602pt x 423.52972pt>
 File: assets/estabilidade_tempo.pdf Graphic file (type pdf)
 <use assets/estabilidade_tempo.pdf>
-Package pdftex.def Info: assets/estabilidade_tempo.pdf  used on input line 321.
-
+Package pdftex.def Info: assets/estabilidade_tempo.pdf  used on input line 305.
 (pdftex.def)             Requested size: 298.75264pt x 197.56615pt.
-[9 <./assets/consumo_ram_512mb.pdf> <./assets/consumo_ram_256mb.pdf>] [10 <./as
-sets/estabilidade_tempo.pdf>] (./main.bbl) [11] (./main.aux)
+ [9 <./assets/estabilidade_tempo.pdf>] (./main.bbl) [10] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 6627 strings out of 469495
- 109330 string characters out of 5470098
- 567785 words of memory out of 5000000
+ 6620 strings out of 469495
+ 109535 string characters out of 5470098
+ 568784 words of memory out of 5000000
  35042 multiletter control sequences out of 15000+600000
- 686845 words of font info for 148 fonts, out of 8000000 for 9000
+ 686329 words of font info for 144 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 72i,8n,79p,1001b,419s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf-dis
-t/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texmf-dist/fonts/type1/public/l
-m/lmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share
-/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf-dist/fonts/type1/p
-ublic/lm/lmri12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><
-/usr/share/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf-dist/f
-onts/type1/public/lm/lmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmt
-t10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on main.pdf (11 pages, 362975 bytes).
+ 72i,8n,79p,1100b,419s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
+Output written on main.pdf (10 pages, 361492 bytes).
 PDF statistics:
- 518 PDF objects out of 1000 (max. 8388607)
- 113 compressed objects within 2 object streams
+ 515 PDF objects out of 1000 (max. 8388607)
+ 111 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  33818 words of extra memory for PDF output out of 35830 (max. 10000000)
 

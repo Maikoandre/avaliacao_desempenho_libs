@@ -41,31 +41,14 @@
 \maketitle
 
 \begin{resumo} 
-  Este estudo experimental apresenta um benchmark comparativo de desempenho entre quatro das
-  principais bibliotecas de processamento de dados em Python: Pandas, Polars, DuckDB e PySpark. O
-  objetivo consiste em avaliar a eficiência em tempo de execução e o consumo máximo de memória RAM em
-  ambientes de hardware com recursos limitados. A avaliação foi delimitada por um planejamento
-  fatorial completo utilizando três tamanhos de conjuntos de dados (256MB, 512MB e 1GB) e quatro
-  operações analíticas fundamentais: filtragem, agregação, junção e ordenação. Para garantir a
-  estabilidade das medições e a integridade do isolamento de recursos, cada teste foi executado de
-  forma estanque por meio de subprocessos individuais, antecedidos por uma etapa de aquecimento
-  (warmup). Os resultados experimentais sugerem possíveis trade-offs entre as ferramentas: o Pandas 
-  indicou maior demanda de memória em volumes maiores; o Polars e o DuckDB mostraram indícios de 
-  maior eficiência de processamento e menor consumo de recursos sob as condições testadas; 
-  enquanto o PySpark apresentou maior overhead de inicialização em ambientes restritos.
+  Este estudo apresenta um benchmark comparativo de desempenho entre as bibliotecas Pandas, Polars, DuckDB e PySpark em ambiente com recursos de hardware limitados. A avaliação utilizou um planejamento fatorial com três tamanhos de datasets (256MB, 512MB e 1GB) e quatro operações analíticas (filtragem, agregação, junção e ordenação). Para garantir a estabilidade das medições, cada teste foi executado de forma estanque por subprocessos individuais, precedidos por warmup. Os resultados experimentais sugerem que o Pandas apresenta maior demanda de RAM em grandes volumes, o Polars e o DuckDB indicam maior eficiência temporal e de memória, enquanto o PySpark sugere maior overhead de inicialização local.
 \end{resumo} 
 
 \begin{abstract}
-  This experimental study presents a comparative performance benchmark among four of the main data
-  processing libraries in Python: Pandas, Polars, DuckDB, and PySpark. The objective is to evaluate
-  execution time efficiency and peak RAM memory consumption in hardware environments with limited
-  resources. The evaluation was defined by a full factorial design using three dataset sizes (256MB,
-  512MB, and 1GB) and four fundamental analytical operations: filtering, aggregation, joining, and
-  sorting. To ensure measurement stability and resource isolation integrity, each test was executed
-  independently using individual subprocesses, preceded by a warmup phase. The experimental results suggest potential trade-offs among the tools: Pandas indicated higher memory demands at larger volumes; Polars and DuckDB showed signs of higher processing efficiency and lower resource consumption under the tested conditions; while PySpark suggested higher initialization overhead in restricted environments.
+  This study presents a comparative performance benchmark among Pandas, Polars, DuckDB, and PySpark in hardware-constrained environments. The evaluation employed a full factorial design with three dataset sizes (256MB, 512MB, and 1GB) and four analytical operations (filtering, aggregation, joining, and sorting). To ensure measurement stability, each test was executed independently using individual subprocesses preceded by warmup. The experimental results suggest that Pandas demands more RAM at larger volumes, Polars and DuckDB show signs of higher time and memory efficiency, while PySpark suggests higher local initialization overhead.
 \end{abstract}
      
-
+\newpage
 
 \section{Introdução}
 
@@ -234,13 +217,14 @@ operação — que inclui uma iteração preliminar de aquecimento (\textit{warm
 atrasos de inicialização de módulos e compilações JIT —, consolidando todos os tempos de execução e
 picos de uso de memória física (RAM) em um arquivo JSON para posterior análise estatística.
 
-
+\newpage
 \section{Resultados obtidos}
 
 Esta seção apresenta os resultados experimentais obtidos a partir da execução do benchmark
 projetado. As análises estão estruturadas em três vertentes principais: a escalabilidade temporal
 das operações analíticas, a eficiência no consumo de memória RAM (com ênfase no limite físico de
 hardware de 8GB) e a estabilidade das ferramentas ao longo de rodadas repetidas de teste.
+
 
 \subsection{Curva de Escalabilidade Temporal}
 \begin{figure}[H]
@@ -267,6 +251,7 @@ como a junção (\textit{join}), o Pandas demonstra baixa escalabilidade tempora
 requer cerca de $0,8$ s para o processamento de 1GB, o Polars e o DuckDB executam a mesma carga em
 apenas $0,01$ s, operando em uma velocidade aproximadamente 80 vezes superior.
 
+\newpage
 \subsection{Eficiência no Consumo de Memória RAM}
 
 Considerando que o ambiente computacional avaliado possui restrição física de hardware, a eficiência
@@ -299,6 +284,7 @@ Para fins de análise comparativa com volumes menores, as Figuras~\ref{fig:ram_5
 \caption{Pico de Consumo de RAM (MB) por Operação no Dataset de 512MB.}\label{fig:ram_512}
 \end{figure}
 
+\newpage
 Ao duplicar o volume para 512MB (Figura~\ref{fig:ram_512}), o consumo do Pandas escala proporcionalmente, atingindo aproximadamente 4.560 MB de alocação de RAM, o que representa cerca de 57\% da capacidade total de hardware. O Polars eleva seu patamar de consumo para aproximadamente 928 MB\@. O DuckDB permanece como a solução mais eficiente em termos de memória, operando em cerca de 605 a 610 MB para as operações de filtragem, agregação e junção, e atingindo 755 MB na ordenação. O PySpark, por sua vez, mantém-se estável nas operações de filtragem e agregação (cerca de 744 MB), mas cresce para 817 MB na junção e 1.350 MB na ordenação. Esses comportamentos confirmam a tendência de crescimento linear do consumo de memória para o Pandas e o Polars, enquanto DuckDB e PySpark mostram uma curva mais amortecida devido ao gerenciamento dinâmico e custo fixo de suas respectivas infraestruturas.
 
 \begin{figure}[!ht]
@@ -306,9 +292,7 @@ Ao duplicar o volume para 512MB (Figura~\ref{fig:ram_512}), o consumo do Pandas 
 \includegraphics[width=0.8\textwidth]{assets/consumo_ram_256mb.pdf}
 \caption{Pico de Consumo de RAM (MB) por Operação no Dataset de 256MB.}\label{fig:ram_256}
 \end{figure}
-
 No cenário de 256MB (Figura~\ref{fig:ram_256}), o Pandas apresenta um pico de consumo estável em torno de 2.420 MB para todas as operações, o que equivale a cerca de 9,4 vezes o volume nominal dos dados de entrada. O Polars e o DuckDB mantêm perfis de consumo otimizados: o Polars estabiliza-se em aproximadamente 609 MB, enquanto o DuckDB demanda em média 475 MB para filtragem, agregação e junção, com uma elevação para cerca de 569 MB na operação de ordenação. O PySpark exibe um consumo médio de 740 MB nas operações de filtragem e agregação, elevando-se a 783 MB na junção e alcançando 1.125 MB na ordenação, evidenciando o impacto da JVM mesmo em volumes menores.
-
 
 \subsection{Estabilidade e Dispersão de Desempenho}
 
@@ -329,6 +313,7 @@ de estabilidade geral, exibindo uma dispersão extremamente compacta e sem quais
 oscilando entre 0,6 s e 7 s, além de registrar um pico atípico próximo a 20 segundos, o que reflete
 a instabilidade do Garbage Collection da JVM sob restrição severa de recursos.
 
+\newpage
 \section{Considerações Finais}
 
 Este trabalho apresentou uma análise comparativa experimental preliminar entre Pandas, Polars, DuckDB e PySpark em um cenário específico de hardware restrito.
@@ -337,7 +322,6 @@ Os resultados obtidos indicam que a escolha da biblioteca de processamento de da
 
 Por outro lado, o Polars e o DuckDB apontaram indícios de serem alternativas eficientes para cenários de hardware limitado, apresentando um comportamento otimizado na alocação de memória e no tempo de execução sob as condições deste experimento. Contudo, as observações deste trabalho limitam-se ao escopo experimental avaliado, não permitindo generalizações definitivas. Como trabalhos futuros, sugere-se a ampliação deste benchmark para outros formatos de dados e a realização de testes com volumes significativamente maiores, a fim de corroborar ou aprofundar as tendências observadas.
 
-\newpage
 \bibliographystyle{sbc} \bibliography{sbc-template}
 
 \end{document}

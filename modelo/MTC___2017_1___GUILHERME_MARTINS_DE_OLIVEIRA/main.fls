@@ -1,7 +1,7 @@
 PWD /home/maiko/Projects/avaliacao_desempenho_libs/modelo/MTC___2017_1___GUILHERME_MARTINS_DE_OLIVEIRA
 INPUT /usr/share/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT main.tex
+INPUT /home/maiko/Projects/avaliacao_desempenho_libs/modelo/MTC___2017_1___GUILHERME_MARTINS_DE_OLIVEIRA/main.tex
 OUTPUT main.log
 INPUT /usr/share/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/share/texmf-dist/tex/latex/base/article.cls
@@ -145,13 +145,13 @@ INPUT /usr/share/texmf-dist/tex/latex/lm/t1lmss.fd
 INPUT /usr/share/texmf-dist/fonts/tfm/public/lm/ec-lmss12.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/lm/ec-lmss10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/lm/ec-lmssbx10.tfm
-INPUT ./assets/consumo_ram_1gb.pdf
-INPUT ./assets/consumo_ram_1gb.pdf
-INPUT ./assets/consumo_ram_1gb.pdf
-INPUT ./assets/consumo_ram_1gb.pdf
-INPUT ./assets/consumo_ram_1gb.pdf
 INPUT /usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc
 INPUT /usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc
+INPUT ./assets/consumo_ram_1gb.pdf
+INPUT ./assets/consumo_ram_1gb.pdf
+INPUT ./assets/consumo_ram_1gb.pdf
+INPUT ./assets/consumo_ram_1gb.pdf
+INPUT ./assets/consumo_ram_1gb.pdf
 INPUT ./assets/consumo_ram_512mb.pdf
 INPUT ./assets/consumo_ram_512mb.pdf
 INPUT ./assets/consumo_ram_512mb.pdf
