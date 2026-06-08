@@ -1,14 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1780348023.2305 "main.aux" "main.bbl" "main" 1780348080.7224 0
+["bibtex main"] 1780910995.39375 "main.aux" "main.bbl" "main" 1780910996.23105 0
   "./sbc-template.bib" 1780151592.96794 2463 25d21e3de0868277d145fced27226ba8 ""
   "./sbc.bst" 1780005867.55911 21925 e7f5e656183e7f01fa9578145132b6b0 ""
-  "main.aux" 1780348080.49291 3794 47d6cdc56aff545ee5dd85d80e06a017 "pdflatex"
+  "main.aux" 1780910996.0169 4416 fa900488e587f1563af46e7aae9105ea "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1780348079.85659 "/home/maiko/Projects/avaliacao_desempenho_libs/modelo/MTC___2017_1___GUILHERME_MARTINS_DE_OLIVEIRA/main.tex" "main.pdf" "main" 1780348080.72272 0
-  "/home/maiko/Projects/avaliacao_desempenho_libs/modelo/MTC___2017_1___GUILHERME_MARTINS_DE_OLIVEIRA/main.tex" 1780348079.57589 20455 90b6dd2de568ae08b94a70f488ef8caf ""
+["pdflatex"] 1780910995.47745 "main.tex" "main.pdf" "main" 1780910996.23122 0
   "/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1775415801 2375 baa924870cfb487815765f9094cf3728 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc" 1775415801 2405 5dcf2c1b967ee25cc46c58cd52244aed ""
   "/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc" 1775415801 2840 216e6e45ad352e2456e1149f28885bee ""
@@ -94,12 +93,14 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1779136463 5385779 47c0c393a77fd4a098bacfd57d66b88a ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1779136409 2329403 ccc8629b393885aa76ce583be5cdf44c ""
   "assets/consumo_ram_1gb.pdf" 1780302600.58536 30282 da453e8b54cf7815c6913923a0d6f645 ""
+  "assets/consumo_ram_256mb.pdf" 1780907756.18979 29060 04183d2a9a13c0f3f78f6f004f8050d0 ""
+  "assets/consumo_ram_512mb.pdf" 1780907756.19179 29058 716bb176b50bbe82f81c2860a0ed8f81 ""
   "assets/escalabilidade_tempo.pdf" 1779668464.15616 32966 825d1207e9994614f4f8b7bdaf17d3a0 ""
   "assets/estabilidade_tempo.pdf" 1780302620.83347 25282 787d62e900cbda372cdd1a327c2c317b ""
   "caption2.sty" 1779397348 15189 50845fba222dc25666abc3397b231fab ""
-  "main.aux" 1780348080.49291 3794 47d6cdc56aff545ee5dd85d80e06a017 "pdflatex"
-  "main.bbl" 1780348023.2997 2152 fb0537cc37a83ca8624cc4be1bcd36c7 "bibtex main"
-  "main.tex" 1780348079.57589 20455 90b6dd2de568ae08b94a70f488ef8caf ""
+  "main.aux" 1780910996.0169 4416 fa900488e587f1563af46e7aae9105ea "pdflatex"
+  "main.bbl" 1780910995.47433 2170 44e373f81107bb24c01ad254afc73cc3 "bibtex main"
+  "main.tex" 1780910969.45923 23649 23be8db0297c1bd95823da27f14fa4f6 ""
   "sbc-template.sty" 1780006137.83832 5141 4bab3aa3a4d699f94aafa22309cce7b5 ""
   (generated)
   "main.aux"
